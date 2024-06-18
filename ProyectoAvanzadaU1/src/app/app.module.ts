@@ -11,16 +11,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetAdoptionComponent } from './pet-adoption/pet-adoption.component';
 import { TablaValidacionComprobanteComponent } from './tabla-validacion-comprobante/tabla-validacion-comprobante.component';
-
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from "primeng/button";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PetAdoptionComponent,
-    TablaValidacionComprobanteComponent
+    TablaValidacionComprobanteComponent,
+
   ],
   imports: [
     BrowserModule,

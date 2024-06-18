@@ -1,12 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService} from "primeng/api";
 
-interface ValidacionComprobante {
+interface PetAdoption {
   id: number;
-  fecha: string;
-  tipo: string;
-  estado: string;
-  monto: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  status: string;
+}
+
+interface Event {
+  status: string;
+  date: Date;
+  icon: string;
+  color: string;
 }
 
 @Component({
@@ -14,26 +23,61 @@ interface ValidacionComprobante {
   templateUrl: './tabla-validacion-comprobante.component.html',
   styleUrl: './tabla-validacion-comprobante.component.css'
 })
-export class TablaValidacionComprobanteComponent implements OnInit {
- verificaciones: any[] = [];
-
-ngOnInit() {
-  this.verificaciones = [
-    {id: 1, fecha: '2022-01-01', tipo: 'Tipo 1', estado: 'Estado 1', monto: 100},
-    {id: 2, fecha: '2022-02-01', tipo: 'Tipo 2', estado: 'Estado 2', monto: 200},
-    {id: 3, fecha: '2022-03-01', tipo: 'Tipo 3', estado: 'Estado 3', monto: 300},
-    {id: 4, fecha: '2022-04-01', tipo: 'Tipo 4', estado: 'Estado 4', monto: 400},
-    {id: 5, fecha: '2022-05-01', tipo: 'Tipo 5', estado: 'Estado 5', monto: 500},
+export class TablaValidacionComprobanteComponent  {
+  petAdoptions: PetAdoption[] = [
+    {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+      address: '123 Main St, Los Angeles, CA',
+      status: 'completed',
+    },
+    {
+      id: 2,
+      firstName: 'Jane',
+      lastName: 'Smith',
+      email: 'jane.smith@example.com',
+      phone: '987-654-3210',
+      address: '456 Oak Ave, Los Angeles, CA',
+      status: 'pending',
+    },
+    // Añade más datos según sea necesario
   ];
-}
 
- onAccept(verificacion: any) {
-  // Implementa la lógica para aceptar una verificación aquí
-  console.log(`Verificación aceptada: ${JSON.stringify(verificacion)}`);
-}
+  events: Event[] = [
+    { status: 'Solicitud', date: new Date('2023-01-01'), icon: 'pi pi-envelope', color: '#9C27B0' },
+    { status: 'Revisión', date: new Date('2023-01-15'), icon: 'pi pi-search', color: '#673AB7' },
+    { status: 'Pago', date: new Date('2023-02-01'), icon: 'pi pi-dollar', color: '#FF9800' },
+    { status: 'Mascota adoptada', date: new Date('2023-03-01'), icon: 'pi pi-heart', color: '#607D8B' }
+  ];
 
-onReject(verificacion: any) {
-  // Implementa la lógica para rechazar una verificación aquí
-  console.log(`Verificación rechazada: ${JSON.stringify(verificacion)}`);
-}
+  // Define la propiedad progressWidth y su lógica de cálculo
+  get progressWidth(): string {
+    // Aquí puedes definir la lógica para calcular el ancho de la barra de progreso
+    // Por ejemplo, puedes calcularlo en base a la cantidad de adopciones completadas
+    const completedCount = this.petAdoptions.filter(adoption => adoption.status === 'completed').length;
+    return `${(completedCount / this.petAdoptions.length) * 100}%`;
+  }
+
+  // Función para obtener las iniciales
+  getInitials(firstName: string, lastName: string): string {
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`;
+  }
+
+  // Función para obtener la clase de estado
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'completed':
+        return 'bg-green-200';
+      case 'pending':
+        return 'bg-yellow-200';
+      case 'hold':
+        return 'bg-red-200';
+      default:
+        return '';
+    }
+  }
+
 }
