@@ -9,6 +9,7 @@ interface PetAdoption {
   phone: string;
   address: string;
   status: string;
+  receiptPath: string;
 }
 
 interface Event {
@@ -33,59 +34,7 @@ export class TablaValidacionComprobanteComponent  {
       phone: '123-456-7890',
       address: '123 Main St, Los Angeles, CA',
       status: 'completed',
-    },
-    {
-      id: 2,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    },
-    {
-      id: 3,
-      firstName: 'Josue Espinoza',
-      lastName: 'Zambrano',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    },
-    {
-      id: 4,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    },
-    {
-      id: 5,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    }
-    ,{
-      id: 6,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    },{
-      id: 7,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
+      receiptPath: '...src\\assets\\imagenes\\comprobante1.jpg',
     }
 
 
@@ -163,6 +112,11 @@ export class TablaValidacionComprobanteComponent  {
       adoption.email.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+
+  // Ver imagen comprobante
+  verComprobante(receiptPath: string) {
+  window.open(receiptPath, '_blank');
+}
 }
 
 

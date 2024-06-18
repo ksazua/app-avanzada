@@ -79,6 +79,11 @@
           <td class="py-2 px-4">{{ adoption.phone }}</td>
           <td class="py-2 px-4">{{ adoption.address }}</td>
           <td class="py-2 px-4">
+            <button class="button-view-receipt" (click)="verComprobante(adoption.receiptPath)">
+              Ver comprobante
+            </button>
+          </td>
+          <td class="py-2 px-4">
             <button class="button-approve" (click)="aceptar(adoption.id)">
               <i class="pi pi-check"></i>
             </button>
