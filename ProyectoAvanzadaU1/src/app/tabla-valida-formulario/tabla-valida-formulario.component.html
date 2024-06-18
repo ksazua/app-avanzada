@@ -1,1 +1,102 @@
-<p>tabla-valida-formulario works!</p>
+<!-- pet-adoption.component.html -->
+
+<header class="flex justify-between items-center py-4 px-8 bg-white shadow-md rounded-md mb-4">
+  <div class="flex items-center">
+    <h1 class="text-2xl font-bold">ProyectoAdoptame</h1>
+  </div>
+
+</header>
+
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <aside class="w-1/6 bg-gray-100 p-4">
+    <div class="mb-4 text-center">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg"
+        alt="User" class="w-12 h-12 rounded-full mx-auto">
+      <h2 class="mt-2 text-sm">Hola, Larissa</h2>
+      <p class="text-gray-600 text-xs">Super admin</p>
+    </div>
+    <nav>
+      <ul>
+        <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Todos los animales</li>
+        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Panel</li>
+        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Solicitudes</li>
+        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Reportes</li>
+        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Ajustes</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="w-5/6 h-screen overflow-auto p-4">
+    <!-- Timeline Horizontal -->
+
+
+    <!-- Pet Adoptions Table -->
+    <div class="bg-white shadow-md rounded-md p-4 mt-8">
+      <p-toolbar>
+
+        <div class="p-toolbar-group-center">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Buscar...">
+    </span>
+        </div>
+        <select class="page-size-select" [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+      </p-toolbar>
+
+      <h2 class="text-xl font-bold mb-4">Tienes {{ petAdoptions.length }} solicitudes en total</h2>
+
+
+      <table class="min-w-full bg-white">
+        <thead>
+        <tr>
+          <th class="py-2 px-4 bg-gray-200">ID</th>
+          <th class="py-2 px-4 bg-gray-200">Foto</th>
+          <th class="py-2 px-4 bg-gray-200">Nombre y Apellido</th>
+          <th class="py-2 px-4 bg-gray-200">Correo</th>
+          <th class="py-2 px-4 bg-gray-200">Teléfono</th>
+          <th class="py-2 px-4 bg-gray-200">Dirección</th>
+          <th class="py-2 px-4 bg-gray-200">Acciones</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr *ngFor="let adoption of currentRecords" class="text-center border-b">
+          <td class="py-2 px-4">{{ adoption.id }}</td>
+          <td class="py-2 px-4">
+            <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+              {{ getInitials(adoption.firstName, adoption.lastName) }}
+            </div>
+          </td>
+          <td class="py-2 px-4">{{ adoption.firstName }} {{ adoption.lastName }}</td>
+          <td class="py-2 px-4">{{ adoption.email }}</td>
+          <td class="py-2 px-4">{{ adoption.phone }}</td>
+          <td class="py-2 px-4">{{ adoption.address }}</td>
+          <td class="py-2 px-4">
+            <button class="button-approve" (click)="aceptar(adoption.id)">
+              <i class="pi pi-check"></i>
+            </button>
+            <button class="button-reject" (click)="rechazar(adoption.id)">
+              <i class="pi pi-times"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="pagination-buttons">
+        <button class="pagination-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+          Anterior
+        </button>
+        <button class="pagination-button" (click)="changePage(currentPage + 1)"
+                [disabled]="currentPage === Math.ceil(petAdoptions.length / pageSize)">Siguiente
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
