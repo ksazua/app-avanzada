@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SelectItem } from 'primeng/api';
 
 interface PetAdoption {
   id: number;
@@ -9,6 +8,13 @@ interface PetAdoption {
   phone: string;
   address: string;
   status: string;
+}
+
+interface Event {
+  status: string;
+  date: Date;
+  icon: string;
+  color: string;
 }
 
 @Component({
@@ -37,6 +43,13 @@ export class PetAdoptionComponent {
       status: 'pending',
     },
     // Añade más datos según sea necesario
+  ];
+
+  events: Event[] = [
+    { status: 'Solicitud', date: new Date('2023-01-01'), icon: 'pi pi-envelope', color: '#9C27B0' },
+    { status: 'Revisión', date: new Date('2023-01-15'), icon: 'pi pi-search', color: '#673AB7' },
+    { status: 'Pago', date: new Date('2023-02-01'), icon: 'pi pi-dollar', color: '#FF9800' },
+    { status: 'Mascota adoptada', date: new Date('2023-03-01'), icon: 'pi pi-heart', color: '#607D8B' }
   ];
 
   // Define la propiedad progressWidth y su lógica de cálculo

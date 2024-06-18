@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { TableModule } from 'primeng/table';
+import { TimelineModule } from 'primeng/timeline';
+import { ButtonModule } from 'primeng/button'; // Cambiado a ButtonModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetAdoptionComponent } from './pet-adoption/pet-adoption.component';
 import { TablaValidacionComprobanteComponent } from './tabla-validacion-comprobante/tabla-validacion-comprobante.component';
-import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -16,12 +16,14 @@ import { TableModule } from 'primeng/table';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    ButtonModule,
-    TableModule
+    TableModule,
+    TimelineModule,
+    ButtonModule
   ],
-  providers: [],
+  providers: [
+    provideClientHydration()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

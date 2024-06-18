@@ -1,3 +1,5 @@
+<!-- pet-adoption.component.html -->
+
 <header class="flex justify-between items-center py-4 px-8 bg-white shadow-md rounded-md mb-4">
   <div class="flex items-center">
     <h1 class="text-2xl font-bold">ProyectoAdoptame</h1>
@@ -11,7 +13,6 @@
 <div class="flex h-screen">
   <!-- Sidebar -->
   <aside class="w-1/6 bg-gray-100 p-4">
-    <!-- Contenido del sidebar -->
     <div class="mb-4 text-center">
       <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg" alt="User" class="w-12 h-12 rounded-full mx-auto">
       <h2 class="mt-2 text-sm">Hola, Larissa</h2>
@@ -30,87 +31,56 @@
 
   <!-- Main Content -->
   <div class="w-5/6 h-screen overflow-auto p-4">
-    <!-- Progress Bar -->
-    <div class="my-4 p-4 bg-white shadow-md rounded-md">
-      <div class="flex items-center justify-between">
-        <div class="step completed">
-          <div class="step-circle bg-green-200">
-            <i class="material-icons">check</i>
-          </div>
-          <div class="step-line"></div>
-          <div class="step-details">
-            <div class="step-title">Solicitud</div>
-          </div>
+    <!-- Timeline Horizontal -->
+    <p-timeline [value]="events" [align]="'top'" [layout]="'horizontal'">
+      <ng-template pTemplate="marker" let-event>
+        <span class="custom-marker p-shadow-2" [ngStyle]="{'background-color': event.color}">
+          <i class="pi" [ngClass]="event.icon"></i>
+        </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-event>
+        <div class="timeline-event">
+          <h3>{{event.status}}</h3>
+          <p>{{event.date | date: 'mediumDate'}}</p>
         </div>
-
-        <div class="step completed">
-          <div class="step-circle bg-green-200">
-            <i class="material-icons">check</i>
-          </div>
-          <div class="step-line"></div>
-          <div class="step-details">
-            <div class="step-title">Revisión</div>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-circle bg-pastel-orange">
-            <i class="material-icons">payment</i>
-          </div>
-          <div class="step-line"></div>
-          <div class="step-details">
-            <div class="step-title">Pago</div>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-circle bg-pastel-purple">
-            <i class="material-icons">pets</i>
-          </div>
-          <div class="step-details">
-            <div class="step-title">Mascota adoptada</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="progress-bar">
-        <div class="progress-line" [style.width]="progressWidth"></div>
-      </div>
-    </div>
+      </ng-template>
+    </p-timeline>
 
     <!-- Pet Adoptions Table -->
-    <div class="bg-white shadow-md rounded-md p-4">
+    <div class="bg-white shadow-md rounded-md p-4 mt-8">
       <h2 class="text-xl font-bold mb-4">Tienes {{ petAdoptions.length }} solicitudes en total</h2>
-      <p-table [value]="petAdoptions">
-        <ng-template pTemplate="header">
+      <table class="min-w-full bg-white">
+        <thead>
           <tr>
-            <th>ID</th>
-            <th>Foto</th>
-            <th>Nombre y Apellido</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Dirección</th>
-            <th>Estado</th>
+            <th class="py-2 px-4 bg-gray-200">ID</th>
+            <th class="py-2 px-4 bg-gray-200">Foto</th>
+            <th class="py-2 px-4 bg-gray-200">Nombre y Apellido</th>
+            <th class="py-2 px-4 bg-gray-200">Correo</th>
+            <th class="py-2 px-4 bg-gray-200">Teléfono</th>
+            <th class="py-2 px-4 bg-gray-200">Dirección</th>
+            <th class="py-2 px-4 bg-gray-200">Estado</th>
           </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-adoption>
-          <tr class="text-center border-b">
-            <td>{{ adoption.id }}</td>
-            <td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let adoption of petAdoptions" class="text-center border-b">
+            <td class="py-2 px-4">{{ adoption.id }}</td>
+            <td class="py-2 px-4">
               <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
                 {{ getInitials(adoption.firstName, adoption.lastName) }}
               </div>
             </td>
-            <td>{{ adoption.firstName }} {{ adoption.lastName }}</td>
-            <td>{{ adoption.email }}</td>
-            <td>{{ adoption.phone }}</td>
-            <td>{{ adoption.address }}</td>
-            <td [ngClass]="getStatusClass(adoption.status)">
-              {{ adoption.status }}
+            <td class="py-2 px-4">{{ adoption.firstName }} {{ adoption.lastName }}</td>
+            <td class="py-2 px-4">{{ adoption.email }}</td>
+            <td class="py-2 px-4">{{ adoption.phone }}</td>
+            <td class="py-2 px-4">{{ adoption.address }}</td>
+            <td class="py-2 px-4 text-sm font-medium text-gray-800">
+              <span [ngClass]="getStatusClass(adoption.status)">
+                {{ adoption.status }}
+              </span>
             </td>
           </tr>
-        </ng-template>
-      </p-table>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
