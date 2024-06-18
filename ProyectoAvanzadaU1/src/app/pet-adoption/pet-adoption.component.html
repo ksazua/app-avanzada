@@ -1,142 +1,148 @@
-<!-- Encabezado -->
-<header class="flex justify-between items-center py-4 px-8 bg-white shadow-md mb-0">
-  <div class="flex items-center">
-    <h1 class="text-2xl font-bold">ProyectoAdoptame</h1>
-  </div>
-  <div class="flex items-center space-x-4">
-    <span class="text-gray-600">Ubicación: Los Ángeles</span>
-    <button class="bg-pink-500 text-white py-2 px-4 rounded-md">Añadir nuevo animal</button>
-  </div>
-</header>
-
-<div class="flex h-full">
-  <!-- Sidebar -->
-  <aside class="w-1/5 bg-white-100 p-4 text-14">
-    <div class="mb-4 text-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg"
-        alt="User" class="w-12 h-12 rounded-full mx-auto">
-      <h2 class="mt-2 text-sm">Hola, Larissa</h2>
-      <p class="text-gray-600 text-xs">Super admin</p>
+  <!-- Encabezado -->
+  <header class="flex justify-between items-center py-4 px-8 bg-white shadow-md mb-0">
+    <div class="flex items-center">
+      <h1 class="text-2xl font-bold">ProyectoAdoptame</h1>
     </div>
-    <nav>
-      <ul>
-        <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Todos los animales</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Panel</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Solicitudes</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Reportes</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Ajustes</li>
-      </ul>
-    </nav>
-  </aside>
+    <div class="flex items-center space-x-4">
+      <span class="text-gray-600">Ubicación: Los Ángeles</span>
+      <button class="bg-pink-500 text-white py-2 px-4 rounded-md">Añadir nuevo animal</button>
+    </div>
+  </header>
 
-  <!-- Contenido Principal -->
-  <div class="w-5/6 h-screen overflow-auto p-4 bg-gray-100 main-content">
-    <div class="bg-white shadow-md rounded-md p-4 mb-4">
-      <div class="flex items-center">
-        <ng-container *ngFor="let step of steps; let i = index">
-          <div class="step-item">
-            <div class="step-circle" [ngClass]="getStepClass(step)"><i [class]="step.icon"></i></div>
-            <div class="step-label text-sm font-medium text-gray-600">{{ step.label }}</div>
-            <div class="step-date text-xs text-gray-400">{{ step.date }}</div>
-          </div>
-          <div *ngIf="i < steps.length - 1" class="step-separator" [ngClass]="getSeparatorClass(i)"></div>
-        </ng-container>
+  <div class="flex h-full">
+    <!-- Sidebar -->
+    <aside class="w-1/5 bg-white p-4 text-14">
+      <div class="mb-4 text-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg"
+          alt="User" class="w-12 h-12 rounded-full mx-auto">
+        <h2 class="mt-2 text-sm">Hola, Larissa</h2>
+        <p class="text-gray-600 text-xs">Super admin</p>
       </div>
-    </div>
+      <nav>
+        <ul>
+          <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Todos los animales</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Panel</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Solicitudes</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Reportes</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Ajustes</li>
+        </ul>
+      </nav>
+    </aside>
 
-    <div class="flex space-x-6">
-      <div class="w-1/3 user-info-box">
-        <div *ngIf="user" class="p-6 bg-white shadow-md rounded-md mb-4">
-          <div class="flex items-center space-x-4 mb-4">
-            <div class="bg-pink-500 text-white w-12 h-12 flex items-center justify-center rounded-md">
-              <span class="text-xl font-bold">{{ getInitials(user.firstName, user.lastName) }}</span>
+    <!-- Contenido Principal -->
+    <div class="w-5/6 h-screen overflow-auto p-4 bg-gray-100 main-content">
+      <div class="bg-white shadow-md rounded-md p-4 mb-4">
+        <div class="flex items-center">
+          <ng-container *ngFor="let step of steps; let i = index">
+            <div class="step-item">
+              <div class="step-circle" [ngClass]="getStepClass(step)"><i [class]="step.icon"></i></div>
+              <div class="step-label text-sm font-medium text-gray-600">{{ step.label }}</div>
+              <div class="step-date text-xs text-gray-400">{{ step.date }}</div>
             </div>
-            <div>
-              <h3 class="font-bold text-xl text-gray-800">{{ user.firstName }} {{ user.lastName }}</h3>
-              <p class="p-text">{{ user.address }}</p>
+            <div *ngIf="i < steps.length - 1" class="step-separator" [ngClass]="getSeparatorClass(i)"></div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="flex space-x-6">
+        <div class="w-1/3 user-info-box">
+          <div *ngIf="user" class="p-6 bg-white shadow-md rounded-md mb-4">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="bg-pink-500 text-white w-12 h-12 flex items-center justify-center rounded-md">
+                <span class="text-xl font-bold">{{ getInitials(user.firstName, user.lastName) }}</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl text-gray-800">{{ user.firstName }} {{ user.lastName }}</h3>
+                <p class="p-text">{{ user.address }}</p>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2">
+                <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                  <i class="pi pi-envelope"></i>
+                </div>
+                <span class="p-text">Email: {{ user.email }}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                  <i class="pi pi-phone"></i>
+                </div>
+                <span class="p-text">Teléfono: {{ user.phone }}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                  <i class="pi pi-id-card"></i>
+                </div>
+                <span class="p-text">Estado: {{ user.status }}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                  <i class="pi pi-file"></i>
+                </div>
+                <span class="p-text">ID de Documento: {{ user.documentId }}</span>
+              </div>
             </div>
           </div>
-          <div class="space-y-2">
-            <div class="flex items-center space-x-2">
-              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+        </div>
+
+        <div class="w-2/3 space-y-6">
+          <div class="flex space-x-6 mb-4">
+            <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4">
+              <div class="bg-green-100 text-green-500 w-8 h-8 flex items-center justify-center rounded-md">
                 <i class="pi pi-envelope"></i>
               </div>
-              <span class="p-text">Email: {{ user.email }}</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
-                <i class="pi pi-phone"></i>
+              <div>
+                <h3 class="font-bold text-gray-800 text-sm">Revisión iniciada</h3>
               </div>
-              <span class="p-text">Teléfono: {{ user.phone }}</span>
             </div>
-            <div class="flex items-center space-x-2">
-              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
-                <i class="pi pi-id-card"></i>
+            <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4">
+              <div class="bg-blue-100 text-blue-500 w-8 h-8 flex items-center justify-center rounded-md">
+                <i class="pi pi-credit-card"></i>
               </div>
-              <span class="p-text">Estado: {{ user.status }}</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
-                <i class="pi pi-file"></i>
+              <div>
+                <h3 class="font-bold text-gray-800 text-sm">Pago recibido</h3>
               </div>
-              <span class="p-text">ID de Documento: {{ user.documentId }}</span>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="w-2/3 space-y-6">
-        <div class="flex space-x-6 mb-4">
-          <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4">
-            <div class="bg-green-100 text-green-500 w-8 h-8 flex items-center justify-center rounded-md">
-              <i class="pi pi-envelope"></i>
+          <!-- Tabla de mascotas -->
+          <div class="p-6 bg-white shadow-md rounded-md text-14 pets-table">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-bold text-xl text-gray-800">Mi aplicacion</h3>
+              <button class="bg-gray-200 p-2 rounded-md hover:bg-gray-300">
+                <i class="pi pi-plus"></i>
+              </button>
             </div>
-            <div>
-              <h3 class="font-bold text-gray-800 text-sm">Revisión iniciada</h3>
-            </div>
+            <table class="w-full text-left">
+              <thead>
+                <tr class="text-gray-500">
+                  <th class="pb-2">Nombre de la mascota</th>
+                  <th class="pb-2">Fecha de envío</th>
+                  <th class="pb-2">Fecha de salida</th>
+                  <th class="pb-2">Prueba en casa</th>
+                  <th class="pb-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t">
+                  <td class="py-4 flex items-center">
+                    <img src="" alt="Teaspoon" class="w-10 h-10 rounded-full mr-4">
+                    <span class="p-text">Teaspoon</span>
+                  </td>
+                  <td class="p-text">Hace 5 días</td>
+                  <td class="p-text">Hace 5 días</td>
+                  <td class="p-text">Hace 5 días</td>
+                  <td class="text-right">
+                    <button class="text-gray-500 hover:text-gray-700">
+                      <i class="pi pi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Filas adicionales aquí -->
+              </tbody>
+            </table>
           </div>
-          <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4">
-            <div class="bg-blue-100 text-blue-500 w-8 h-8 flex items-center justify-center rounded-md">
-              <i class="pi pi-credit-card"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-gray-800 text-sm">Pago recibido</h3>
-            </div>
-          </div>
-        </div>
-        <!-- Tabla de mascotas -->
-        <div class="bg-white shadow-md rounded-md p-4">
-          <table class="min-w-full bg-white">
-            <thead>
-              <tr>
-                <th class="py-2 px-4 border-b text-left text-gray-700">Nombre</th>
-                <th class="py-2 px-4 border-b text-left text-gray-700">Especie</th>
-                <th class="py-2 px-4 border-b text-left text-gray-700">Raza</th>
-                <th class="py-2 px-4 border-b text-left text-gray-700">Edad</th>
-                <th class="py-2 px-4 border-b text-left text-gray-700">Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-t">
-                <td class="py-4 flex items-center">
-                  <img src="path/to/image.png" alt="Teaspoon" class="w-10 h-10 rounded-full mr-4">
-                  <span class="p-text">Teaspoon</span>
-                </td>
-                <td class="p-text">Hace 5 días</td>
-                <td class="p-text">Hace 5 días</td>
-                <td class="p-text">Hace 5 días</td>
-                <td class="text-right">
-                  <button class="text-gray-500 hover:text-gray-700">
-                    <i class="pi pi-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <!-- Filas adicionales aquí -->
-            </tbody>
-
-          </table>
         </div>
       </div>
     </div>
   </div>
-</div>
