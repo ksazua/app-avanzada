@@ -36,7 +36,7 @@
   background-color: #feb2b2;
 }
 .button-approve {
-  background-color: #92D050; /* Excel's green color */
+  background-color: #6abfab; /* Excel's green color */
   border: none;
   color: white;
   padding: 5px 10px;
@@ -51,7 +51,7 @@
 }
 
 .button-approve:hover {
-  background-color: #76b043; /* Darken the green color on hover */
+  background-color: #ABF5D1; /* Darken the green color on hover */
 }
 .button-approve:active {
   transform: scale(0.95); /* Reduce the size of the button */
@@ -98,7 +98,7 @@
   padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #92D050;
+  background-color: #35B37E;
   color: white;
   border: none;
   border-radius: 5px;
@@ -111,7 +111,7 @@
 }
 
 .pagination-button:not(:disabled):hover {
-  background-color: #76b043;
+  background-color: #ABF5D1;
 }
 
 
