@@ -1,9 +1,9 @@
-<!-- pet-adoption.component.html -->
-
 <header class="flex justify-between items-center py-4 px-8 bg-white shadow-md rounded-md mb-4">
+  <!-- Encabezado -->
   <div class="flex items-center">
     <h1 class="text-2xl font-bold">ProyectoAdoptame</h1>
   </div>
+  <!-- Botón de añadir nuevo animal -->
   <div class="flex items-center space-x-4">
     <span class="text-gray-600">Ubicación: Los Ángeles</span>
     <button class="bg-pink-500 text-white py-2 px-4 rounded-md">Añadir nuevo animal</button>
@@ -12,12 +12,15 @@
 
 <div class="flex h-screen">
   <!-- Sidebar -->
-  <aside class="w-1/6 bg-gray-100 p-4">
+  <aside class="w-1/6 bg-white-100 p-4 text-14">
+    <!-- Perfil del usuario -->
     <div class="mb-4 text-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg" alt="User" class="w-12 h-12 rounded-full mx-auto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg"
+        alt="User" class="w-12 h-12 rounded-full mx-auto">
       <h2 class="mt-2 text-sm">Hola, Larissa</h2>
       <p class="text-gray-600 text-xs">Super admin</p>
     </div>
+    <!-- Menú de navegación -->
     <nav>
       <ul>
         <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Todos los animales</li>
@@ -29,96 +32,128 @@
     </nav>
   </aside>
 
-<!-- Main Content -->
-<div class="w-5/6 h-screen overflow-auto p-4">
-  <!-- Timeline Step progressbar Horizontal -->
-  <div class="bg-white shadow-md rounded-md p-4 mb-4">
-    <div class="flex items-center">
-      <div class="step-item">
-        <div class="step-circle bg-green-500 text-white">
-          <i class="pi pi-envelope"></i>
-        </div>
-        <div class="step-label text-sm font-medium text-gray-600">Review started</div>
-        <div class="step-date text-xs text-gray-400">Jul 12</div>
-      </div>
-      <div class="step-separator bg-green-500"></div>
-      <div class="step-item">
-        <div class="step-circle bg-green-500 text-white">
-          <i class="pi pi-check"></i>
-        </div>
-        <div class="step-label text-sm font-medium text-gray-600">Approved</div>
-        <div class="step-date text-xs text-gray-400">Jul 12</div>
-      </div>
-      <div class="step-separator bg-green-500"></div>
-      <div class="step-item">
-        <div class="step-circle bg-green-500 text-white">
-          <i class="pi pi-file"></i>
-        </div>
-        <div class="step-label text-sm font-medium text-gray-600">Foster contract</div>
-        <div class="step-date text-xs text-gray-400">Jul 12</div>
-      </div>
-      <div class="step-separator bg-gray-300"></div>
-      <div class="step-item">
-        <div class="step-circle bg-gray-400 text-white">
-          <i class="pi pi-credit-card"></i>
-        </div>
-        <div class="step-label text-sm font-medium text-gray-600">CC Collected</div>
-        <div class="step-date text-xs text-gray-400">Jul 12</div>
-      </div>
-      <div class="step-separator bg-gray-300"></div>
-      <div class="step-item">
-        <div class="step-circle bg-gray-400 text-white">
-          <i class="pi pi-send"></i>
-        </div>
-        <div class="step-label text-sm font-medium text-gray-600">Foster sent out</div>
-        <div class="step-date text-xs text-gray-400">Jul 12</div>
-      </div>
-      <div class="step-separator bg-gray-300"></div>
-      <div class="step-item">
-        <div class="step-circle bg-gray-400 text-white">
-          <i class="pi pi-heart"></i>
-        </div>
-        <div class="step-label text-sm font-medium text-gray-600">Pet adopted</div>
-        <div class="step-date text-xs text-gray-400">Jul 12</div>
+  <!-- Contenido Principal -->
+  <div class="w-5/6 h-screen overflow-auto p-4 bg-gray-100"> <!-- Añadida la clase bg-gray-200 -->
+    <!-- Barra de progreso de pasos del timeline -->
+    <div class="bg-white shadow-md rounded-md p-4 mb-4">
+      <div class="flex items-center">
+        <ng-container *ngFor="let step of steps; let i = index">
+          <div class="step-item">
+            <div class="step-circle" [ngClass]="getStepClass(step)"><i [class]="step.icon"></i></div>
+            <div class="step-label text-sm font-medium text-gray-600">{{ step.label }}</div>
+            <div class="step-date text-xs text-gray-400">{{ step.date }}</div>
+          </div>
+          <div *ngIf="i < steps.length - 1" class="step-separator" [ngClass]="getSeparatorClass(i)"></div>
+        </ng-container>
       </div>
     </div>
-  </div>
 
-    <!-- Pet Adoptions Table -->
-    <div class="bg-white shadow-md rounded-md p-4 mt-8">
-      <h2 class="text-xl font-bold mb-4">Tienes {{ petAdoptions.length }} solicitudes en total</h2>
-      <table class="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th class="py-2 px-4 bg-gray-200">ID</th>
-            <th class="py-2 px-4 bg-gray-200">Foto</th>
-            <th class="py-2 px-4 bg-gray-200">Nombre y Apellido</th>
-            <th class="py-2 px-4 bg-gray-200">Correo</th>
-            <th class="py-2 px-4 bg-gray-200">Teléfono</th>
-            <th class="py-2 px-4 bg-gray-200">Dirección</th>
-            <th class="py-2 px-4 bg-gray-200">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let adoption of petAdoptions" class="text-center border-b">
-            <td class="py-2 px-4">{{ adoption.id }}</td>
-            <td class="py-2 px-4">
-              <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                {{ getInitials(adoption.firstName, adoption.lastName) }}
+    <!-- Estado de revisión, estado de pago e información del usuario -->
+    <div class="flex space-x-6">
+      <!-- Lado izquierdo: Información del usuario -->
+      <div class="w-1/3 space-y-6">
+        <!-- Cuadro de información del usuario -->
+        <div *ngIf="user" class="p-6 bg-white shadow-md rounded-md space-y-4 text-14">
+          <div class="flex items-center space-x-4">
+            <div class="bg-pink-500 text-white w-12 h-12 flex items-center justify-center rounded-md">
+              <span class="text-xl font-bold">{{ getInitials(user.firstName, user.lastName) }}</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl text-gray-800">{{ user.firstName }} {{ user.lastName }}</h3>
+              <p class="p-text">{{ user.address }}</p>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center space-x-2">
+              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                <i class="pi pi-envelope"></i>
               </div>
-            </td>
-            <td class="py-2 px-4">{{ adoption.firstName }} {{ adoption.lastName }}</td>
-            <td class="py-2 px-4">{{ adoption.email }}</td>
-            <td class="py-2 px-4">{{ adoption.phone }}</td>
-            <td class="py-2 px-4">{{ adoption.address }}</td>
-            <td class="py-2 px-4 text-sm font-medium text-gray-800">
-              <span [ngClass]="getStatusClass(adoption.status)">
-                {{ adoption.status }}
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <span class="p-text">Email: {{ user.email }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                <i class="pi pi-phone"></i>
+              </div>
+              <span class="p-text">Teléfono: {{ user.phone }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                <i class="pi pi-id-card"></i>
+              </div>
+              <span class="p-text">Estado: {{ user.status }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
+                <i class="pi pi-file"></i>
+              </div>
+              <span class="p-text">ID de Documento: {{ user.documentId }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado derecho: Estado de revisión, estado de pago y tabla de mascotas -->
+      <div class="w-2/3 space-y-6">
+        <!-- Cuadro de estado de revisión y estado de pago -->
+        <div class="flex space-x-6">
+          <!-- Cuadro de estado de revisión -->
+          <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4">
+            <div class="bg-green-100 text-green-500 w-8 h-8 flex items-center justify-center rounded-md">
+              <i class="pi pi-envelope"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 text-sm">Revisión iniciada</h3>
+            </div>
+          </div>
+          <!-- Cuadro de estado de pago -->
+          <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4">
+            <div class="bg-blue-100 text-blue-500 w-8 h-8 flex items-center justify-center rounded-md">
+              <i class="pi pi-credit-card"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 text-sm">Pago de solicitud</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla de mascotas -->
+        <div class="p-6 bg-white shadow-md rounded-md text-14 pets-table">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold text-xl text-gray-800">Mi aplicacion</h3>
+            <button class="bg-gray-200 p-2 rounded-md hover:bg-gray-300">
+              <i class="pi pi-plus"></i>
+            </button>
+          </div>
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-gray-500">
+                <th class="pb-2">Nombre de la mascota</th>
+                <th class="pb-2">Fecha de envío</th>
+                <th class="pb-2">Fecha de salida</th>
+                <th class="pb-2">Prueba en casa</th>
+                <th class="pb-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="py-4 flex items-center">
+                  <img src="path/to/image.png" alt="Teaspoon" class="w-10 h-10 rounded-full mr-4">
+                  <span class="p-text">Teaspoon</span>
+                </td>
+                <td class="p-text">Hace 5 días</td>
+                <td class="p-text">Hace 5 días</td>
+                <td class="p-text">Hace 5 días</td>
+                <td class="text-right">
+                  <button class="text-gray-500 hover:text-gray-700">
+                    <i class="pi pi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- Filas adicionales aquí -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -8,13 +8,14 @@ interface PetAdoption {
   phone: string;
   address: string;
   status: string;
+  documentId: string;
 }
 
-interface Event {
-  status: string;
-  date: Date;
+interface Step {
+  label: string;
   icon: string;
-  color: string;
+  date: string;
+  status: 'completed' | 'current' | 'hold' | 'upcoming';
 }
 
 @Component({
@@ -32,33 +33,23 @@ export class PetAdoptionComponent {
       phone: '123-456-7890',
       address: '123 Main St, Los Angeles, CA',
       status: 'completed',
-    },
-    {
-      id: 2,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    },
+      documentId: 'DOC123456'
+    }
     // Añade más datos según sea necesario
   ];
 
-  events: Event[] = [
-    { status: 'Solicitud', date: new Date('2023-01-01'), icon: 'pi pi-envelope', color: '#9C27B0' },
-    { status: 'Revisión', date: new Date('2023-01-15'), icon: 'pi pi-search', color: '#673AB7' },
-    { status: 'Pago', date: new Date('2023-02-01'), icon: 'pi pi-dollar', color: '#FF9800' },
-    { status: 'Mascota adoptada', date: new Date('2023-03-01'), icon: 'pi pi-heart', color: '#607D8B' }
-  ];
-
-  // Define la propiedad progressWidth y su lógica de cálculo
-  get progressWidth(): string {
-    // Aquí puedes definir la lógica para calcular el ancho de la barra de progreso
-    // Por ejemplo, puedes calcularlo en base a la cantidad de adopciones completadas
-    const completedCount = this.petAdoptions.filter(adoption => adoption.status === 'completed').length;
-    return `${(completedCount / this.petAdoptions.length) * 100}%`;
+  get user() {
+    return this.petAdoptions.find(petAdoption => petAdoption.id === 1);
   }
+
+  steps: Step[] = [
+    { label: 'Review started', icon: 'pi pi-envelope', date: 'Jul 12', status: 'completed' },
+    { label: 'Approved', icon: 'pi pi-check', date: 'Jul 12', status: 'completed' },
+    { label: 'Foster contract', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
+    { label: 'CC Collected', icon: 'pi pi-credit-card', date: 'Jul 12', status: 'completed' },
+    { label: 'Foster sent out', icon: 'pi pi-send', date: 'Jul 12', status: 'hold' },
+    { label: 'Pet adopted', icon: 'pi pi-heart', date: 'Jul 12', status: 'upcoming' }
+  ];
 
   // Función para obtener las iniciales
   getInitials(firstName: string, lastName: string): string {
@@ -77,5 +68,35 @@ export class PetAdoptionComponent {
       default:
         return '';
     }
+  }
+
+  // Función para obtener la clase de paso
+  getStepClass(step: Step): string {
+    switch (step.status) {
+      case 'completed':
+        return 'bg-green-500 text-white';
+      case 'current':
+        return 'bg-yellow-400 text-white';
+      case 'hold':
+        return 'bg-yellow-400 text-white hold';
+      case 'upcoming':
+        return 'bg-gray-400 text-white';
+      default:
+        return '';
+    }
+  }
+
+  // Función para obtener la clase de separador
+  getSeparatorClass(index: number): string {
+    if (index < this.steps.length - 1) {
+      if (this.steps[index].status === 'completed' && this.steps[index + 1].status === 'completed') {
+        return 'bg-green-500';
+      } else if (this.steps[index].status === 'completed' && this.steps[index + 1].status === 'hold') {
+        return 'bg-yellow-400';
+      } else {
+        return 'bg-gray-300';
+      }
+    }
+    return '';
   }
 }
