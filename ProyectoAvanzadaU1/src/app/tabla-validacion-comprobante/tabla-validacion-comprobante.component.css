@@ -35,3 +35,47 @@
 .bg-red-200 {
   background-color: #feb2b2;
 }
+.button-approve {
+  background-color: #92D050; /* Excel's green color */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-approve:hover {
+  background-color: #76b043; /* Darken the green color on hover */
+}
+.button-approve:active {
+  transform: scale(0.95); /* Reduce the size of the button */
+}
+
+.button-reject {
+  background-color: #ff1493; /* deep pink */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-reject:hover {
+  background-color: #c51182; /* Darken the pink color on hover */
+}
+
+.button-reject:active {
+  transform: scale(0.95); /* Reduce the size of the button */
+}

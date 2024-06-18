@@ -80,4 +80,39 @@ export class TablaValidacionComprobanteComponent  {
     }
   }
 
+  aceptar(id: number) {
+    // Aquí puedes definir la lógica para aprobar la adopción.
+    // Por ejemplo, puedes hacer una llamada a una API para actualizar el estado de la adopción.
+    console.log(`Adopción con ID ${id} aprobada.`);
+  }
+
+  rechazar(id: number) {
+    // Aquí puedes definir la lógica para rechazar la adopción.
+    // Por ejemplo, puedes hacer una llamada a una API para actualizar el estado de la adopción.
+    console.log(`Adopción con ID ${id} rechazada.`);
+  }
+
+
+
+  //metodos para numerar tabla
+  pageSize = 5;
+  currentPage = 1;
+
+  changePage(page: number) {
+    this.currentPage = page;
+  }
+
+  changePageSize(size: number) {
+    this.pageSize = size;
+    this.currentPage = 1; // Volver a la primera página
+  }
+  get currentRecords() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    return this.petAdoptions.slice(start, end);
+  }
+
+  protected readonly Math = Math;
 }
+
+

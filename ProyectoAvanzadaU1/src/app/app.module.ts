@@ -13,6 +13,7 @@ import { PetAdoptionComponent } from './pet-adoption/pet-adoption.component';
 import { TablaValidacionComprobanteComponent } from './tabla-validacion-comprobante/tabla-validacion-comprobante.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from "primeng/button";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -31,7 +32,8 @@ import { ButtonModule } from "primeng/button";
     ButtonModule,
     InputTextModule,
     TimelineModule,
-    ButtonModule
+    ButtonModule,
+    FormsModule
 
   ],
   providers: [
