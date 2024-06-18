@@ -114,12 +114,12 @@
   background-color: #76b043;
 }
 
-/* tabla-validacion-comprobante.component.css */
+
 
 p-toolbar .p-input-icon-left {
   position: relative;
   display: flex;
-  align-items: center; /* Alinea verticalmente el icono y el campo de entrada */
+  align-items: center;
 }
 
 p-toolbar .p-input-icon-left i {
@@ -127,12 +127,11 @@ p-toolbar .p-input-icon-left i {
   left: 10px;
 }
 
-/* tabla-validacion-comprobante.component.css */
 
 p-toolbar .p-input-icon-left input {
-  padding-left: 30px; /* Ajusta este valor según el tamaño de tu icono */
-  width: 300px; /* Ajusta este valor para cambiar el tamaño de la barra de búsqueda */
-  background-color: #ffffff; /* Cambia el color de fondo a blanco */
-  color: #000000; /* Cambia el color del texto a negro */
+  padding-left: 30px;
+  width: 300px;
+  background-color: #ffffff;
+  color: #000000;
   height: 40px;
 }

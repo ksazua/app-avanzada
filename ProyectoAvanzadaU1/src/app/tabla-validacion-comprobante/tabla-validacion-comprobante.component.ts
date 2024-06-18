@@ -91,12 +91,7 @@ export class TablaValidacionComprobanteComponent  {
 
   ];
 
-  events: Event[] = [
-    { status: 'Solicitud', date: new Date('2023-01-01'), icon: 'pi pi-envelope', color: '#9C27B0' },
-    { status: 'Revisión', date: new Date('2023-01-15'), icon: 'pi pi-search', color: '#673AB7' },
-    { status: 'Pago', date: new Date('2023-02-01'), icon: 'pi pi-dollar', color: '#FF9800' },
-    { status: 'Mascota adoptada', date: new Date('2023-03-01'), icon: 'pi pi-heart', color: '#607D8B' }
-  ];
+
 
   // Define la propiedad progressWidth y su lógica de cálculo
   get progressWidth(): string {

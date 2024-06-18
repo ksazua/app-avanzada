@@ -15,6 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from "primeng/button";
 import {FormsModule} from "@angular/forms";
 import {ToolbarModule} from "primeng/toolbar";
+import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-valida-formulario.component';
 
 
 
@@ -23,6 +24,7 @@ import {ToolbarModule} from "primeng/toolbar";
     AppComponent,
     PetAdoptionComponent,
     TablaValidacionComprobanteComponent,
+    TablaValidaFormularioComponent,
 
   ],
   imports: [
