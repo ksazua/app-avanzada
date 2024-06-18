@@ -4,3 +4,17 @@
 .rounded-button {
   border-radius: 50%;
 }
+.p-button-success .pi-check {
+  color: white;
+}
+
+.p-button-danger .pi-times {
+  color: white;
+}
+.check-button {
+  margin-right: 5px;
+}
+
+.x-button {
+  margin-left: 5px;
+}
