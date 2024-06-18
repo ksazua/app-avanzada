@@ -156,6 +156,18 @@ export class TablaValidacionComprobanteComponent  {
   }
 
   protected readonly Math = Math;
+
+  originalPetAdoptions = [...this.petAdoptions];
+  //metodos para buscar
+  searchTerm = '';
+
+  search() {
+    this.petAdoptions = this.originalPetAdoptions.filter(adoption =>
+      adoption.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      adoption.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      adoption.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 }
 
 

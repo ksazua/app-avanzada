@@ -82,7 +82,7 @@
 
 .page-size-select {
   display: flex;
-  justify-content: flex;
+  justify-content: end;
   padding: 5px;
   font-size: 16px;
 }
@@ -112,4 +112,27 @@
 
 .pagination-button:not(:disabled):hover {
   background-color: #76b043;
+}
+
+/* tabla-validacion-comprobante.component.css */
+
+p-toolbar .p-input-icon-left {
+  position: relative;
+  display: flex;
+  align-items: center; /* Alinea verticalmente el icono y el campo de entrada */
+}
+
+p-toolbar .p-input-icon-left i {
+  position: absolute;
+  left: 10px;
+}
+
+/* tabla-validacion-comprobante.component.css */
+
+p-toolbar .p-input-icon-left input {
+  padding-left: 30px; /* Ajusta este valor según el tamaño de tu icono */
+  width: 300px; /* Ajusta este valor para cambiar el tamaño de la barra de búsqueda */
+  background-color: #ffffff; /* Cambia el color de fondo a blanco */
+  color: #000000; /* Cambia el color del texto a negro */
+  height: 40px;
 }

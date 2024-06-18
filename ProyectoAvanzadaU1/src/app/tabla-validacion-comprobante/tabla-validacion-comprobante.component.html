@@ -35,12 +35,23 @@
 
     <!-- Pet Adoptions Table -->
     <div class="bg-white shadow-md rounded-md p-4 mt-8">
+      <p-toolbar>
+
+        <div class="p-toolbar-group-center">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Buscar...">
+    </span>
+        </div>
+        <select class="page-size-select" [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+      </p-toolbar>
+
       <h2 class="text-xl font-bold mb-4">Tienes {{ petAdoptions.length }} solicitudes en total</h2>
-      <select class="page-size-select" [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-      </select>
+
 
       <table class="min-w-full bg-white">
         <thead>
@@ -79,8 +90,12 @@
         </tbody>
       </table>
       <div class="pagination-buttons">
-        <button class="pagination-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
-        <button class="pagination-button" (click)="changePage(currentPage + 1)" [disabled]="currentPage === Math.ceil(petAdoptions.length / pageSize)">Siguiente</button>
+        <button class="pagination-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+          Anterior
+        </button>
+        <button class="pagination-button" (click)="changePage(currentPage + 1)"
+                [disabled]="currentPage === Math.ceil(petAdoptions.length / pageSize)">Siguiente
+        </button>
       </div>
     </div>
   </div>
