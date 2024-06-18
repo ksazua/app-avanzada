@@ -18,3 +18,18 @@
 .x-button {
   margin-left: 5px;
 }
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar {
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+.my-table {
+  min-width: 600px;
+}

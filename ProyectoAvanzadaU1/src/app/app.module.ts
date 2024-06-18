@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import{TableModule} from "primeng/table";
-
+import { TableModule } from "primeng/table";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetAdoptionComponent } from './pet-adoption/pet-adoption.component';
 import { TablaValidacionComprobanteComponent } from './tabla-validacion-comprobante/tabla-validacion-comprobante.component';
-import {Button} from "primeng/button";
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -18,11 +18,13 @@ import {Button} from "primeng/button";
     BrowserModule,
     AppRoutingModule,
     TableModule,
-    Button
+    ButtonModule,
+    InputTextModule
   ],
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
