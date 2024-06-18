@@ -36,7 +36,7 @@
     <!-- Pet Adoptions Table -->
     <div class="bg-white shadow-md rounded-md p-4 mt-8">
       <h2 class="text-xl font-bold mb-4">Tienes {{ petAdoptions.length }} solicitudes en total</h2>
-      <select [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
+      <select class="page-size-select" [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="15">15</option>
@@ -56,7 +56,7 @@
 
         </thead>
         <tbody>
-        <tr *ngFor="let adoption of petAdoptions" class="text-center border-b">
+        <tr *ngFor="let adoption of currentRecords" class="text-center border-b">
           <td class="py-2 px-4">{{ adoption.id }}</td>
           <td class="py-2 px-4">
             <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
@@ -78,9 +78,10 @@
         </tr>
         </tbody>
       </table>
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === Math.ceil(petAdoptions.length / pageSize)">Siguiente</button>
-
+      <div class="pagination-buttons">
+        <button class="pagination-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+        <button class="pagination-button" (click)="changePage(currentPage + 1)" [disabled]="currentPage === Math.ceil(petAdoptions.length / pageSize)">Siguiente</button>
+      </div>
     </div>
   </div>
 </div>

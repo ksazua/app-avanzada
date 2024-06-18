@@ -43,7 +43,52 @@ export class TablaValidacionComprobanteComponent  {
       address: '456 Oak Ave, Los Angeles, CA',
       status: 'pending',
     },
-    // Añade más datos según sea necesario
+    {
+      id: 3,
+      firstName: 'Josue Espinoza',
+      lastName: 'Zambrano',
+      email: 'jane.smith@example.com',
+      phone: '987-654-3210',
+      address: '456 Oak Ave, Los Angeles, CA',
+      status: 'pending',
+    },
+    {
+      id: 4,
+      firstName: 'Jane',
+      lastName: 'Smith',
+      email: 'jane.smith@example.com',
+      phone: '987-654-3210',
+      address: '456 Oak Ave, Los Angeles, CA',
+      status: 'pending',
+    },
+    {
+      id: 5,
+      firstName: 'Jane',
+      lastName: 'Smith',
+      email: 'jane.smith@example.com',
+      phone: '987-654-3210',
+      address: '456 Oak Ave, Los Angeles, CA',
+      status: 'pending',
+    }
+    ,{
+      id: 6,
+      firstName: 'Jane',
+      lastName: 'Smith',
+      email: 'jane.smith@example.com',
+      phone: '987-654-3210',
+      address: '456 Oak Ave, Los Angeles, CA',
+      status: 'pending',
+    },{
+      id: 7,
+      firstName: 'Jane',
+      lastName: 'Smith',
+      email: 'jane.smith@example.com',
+      phone: '987-654-3210',
+      address: '456 Oak Ave, Los Angeles, CA',
+      status: 'pending',
+    }
+
+
   ];
 
   events: Event[] = [
@@ -81,14 +126,12 @@ export class TablaValidacionComprobanteComponent  {
   }
 
   aceptar(id: number) {
-    // Aquí puedes definir la lógica para aprobar la adopción.
-    // Por ejemplo, puedes hacer una llamada a una API para actualizar el estado de la adopción.
+
     console.log(`Adopción con ID ${id} aprobada.`);
   }
 
   rechazar(id: number) {
-    // Aquí puedes definir la lógica para rechazar la adopción.
-    // Por ejemplo, puedes hacer una llamada a una API para actualizar el estado de la adopción.
+
     console.log(`Adopción con ID ${id} rechazada.`);
   }
 
