@@ -29,22 +29,60 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
-  <div class="w-5/6 h-screen overflow-auto p-4">
-    <!-- Timeline Horizontal -->
-    <p-timeline [value]="events" [align]="'top'" [layout]="'horizontal'">
-      <ng-template pTemplate="marker" let-event>
-        <span class="custom-marker p-shadow-2" [ngStyle]="{'background-color': event.color}">
-          <i class="pi" [ngClass]="event.icon"></i>
-        </span>
-      </ng-template>
-      <ng-template pTemplate="content" let-event>
-        <div class="timeline-event">
-          <h3>{{event.status}}</h3>
-          <p>{{event.date | date: 'mediumDate'}}</p>
+<!-- Main Content -->
+<div class="w-5/6 h-screen overflow-auto p-4">
+  <!-- Timeline Step progressbar Horizontal -->
+  <div class="bg-white shadow-md rounded-md p-4 mb-4">
+    <div class="flex items-center">
+      <div class="step-item">
+        <div class="step-circle bg-green-500 text-white">
+          <i class="pi pi-envelope"></i>
         </div>
-      </ng-template>
-    </p-timeline>
+        <div class="step-label text-sm font-medium text-gray-600">Review started</div>
+        <div class="step-date text-xs text-gray-400">Jul 12</div>
+      </div>
+      <div class="step-separator bg-green-500"></div>
+      <div class="step-item">
+        <div class="step-circle bg-green-500 text-white">
+          <i class="pi pi-check"></i>
+        </div>
+        <div class="step-label text-sm font-medium text-gray-600">Approved</div>
+        <div class="step-date text-xs text-gray-400">Jul 12</div>
+      </div>
+      <div class="step-separator bg-green-500"></div>
+      <div class="step-item">
+        <div class="step-circle bg-green-500 text-white">
+          <i class="pi pi-file"></i>
+        </div>
+        <div class="step-label text-sm font-medium text-gray-600">Foster contract</div>
+        <div class="step-date text-xs text-gray-400">Jul 12</div>
+      </div>
+      <div class="step-separator bg-gray-300"></div>
+      <div class="step-item">
+        <div class="step-circle bg-gray-400 text-white">
+          <i class="pi pi-credit-card"></i>
+        </div>
+        <div class="step-label text-sm font-medium text-gray-600">CC Collected</div>
+        <div class="step-date text-xs text-gray-400">Jul 12</div>
+      </div>
+      <div class="step-separator bg-gray-300"></div>
+      <div class="step-item">
+        <div class="step-circle bg-gray-400 text-white">
+          <i class="pi pi-send"></i>
+        </div>
+        <div class="step-label text-sm font-medium text-gray-600">Foster sent out</div>
+        <div class="step-date text-xs text-gray-400">Jul 12</div>
+      </div>
+      <div class="step-separator bg-gray-300"></div>
+      <div class="step-item">
+        <div class="step-circle bg-gray-400 text-white">
+          <i class="pi pi-heart"></i>
+        </div>
+        <div class="step-label text-sm font-medium text-gray-600">Pet adopted</div>
+        <div class="step-date text-xs text-gray-400">Jul 12</div>
+      </div>
+    </div>
+  </div>
 
     <!-- Pet Adoptions Table -->
     <div class="bg-white shadow-md rounded-md p-4 mt-8">
