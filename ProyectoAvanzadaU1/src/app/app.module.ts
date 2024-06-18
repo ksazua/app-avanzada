@@ -1,12 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
-
-
 import { TableModule } from 'primeng/table';
 import { TimelineModule } from 'primeng/timeline';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetAdoptionComponent } from './pet-adoption/pet-adoption.component';
@@ -16,7 +11,7 @@ import { ButtonModule } from "primeng/button";
 import {FormsModule} from "@angular/forms";
 import {ToolbarModule} from "primeng/toolbar";
 import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-valida-formulario.component';
-
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -31,13 +26,13 @@ import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-
     BrowserModule,
     AppRoutingModule,
     TableModule,
-
     ButtonModule,
     InputTextModule,
     TimelineModule,
     ButtonModule,
     FormsModule,
-    ToolbarModule
+    ToolbarModule,
+    DialogModule
 
   ],
   providers: [

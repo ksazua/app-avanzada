@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ConfirmationService} from "primeng/api";
+import {Component, ChangeDetectorRef} from '@angular/core';
 
 interface PetAdoption {
   id: number;
@@ -9,7 +8,7 @@ interface PetAdoption {
   phone: string;
   address: string;
   status: string;
-  receiptPath: string;
+  receiptImagePath: string;
 }
 
 interface Event {
@@ -34,7 +33,7 @@ export class TablaValidacionComprobanteComponent  {
       phone: '123-456-7890',
       address: '123 Main St, Los Angeles, CA',
       status: 'completed',
-      receiptPath: '...src\\assets\\imagenes\\comprobante1.jpg',
+     receiptImagePath: 'D:\\Universidad\\7mo semestre\\Avanzada\\AvanzadaProyectoG1\\ProyectoAvanzadaU1\\ProyectoAvanzadaU1\\src\\assets\\imagenes\\comprobante1.jpg',
     }
 
 
@@ -114,9 +113,25 @@ export class TablaValidacionComprobanteComponent  {
   }
 
   // Ver imagen comprobante
+  receiptImagePath: string = '';
+  displayModal: boolean = false;
+
+
+
+  constructor(private cd: ChangeDetectorRef) {}
   verComprobante(receiptPath: string) {
-  window.open(receiptPath, '_blank');
-}
+    this.receiptImagePath = receiptPath;
+    this.displayModal = true;
+    this.cd.detectChanges();
+  }
+
+  closeModal() {
+    this.displayModal = false;
+    this.cd.detectChanges();
+  }
+
+
+
 }
 
 
