@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import {ToolbarModule} from "primeng/toolbar";
 import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-valida-formulario.component';
 import {DialogModule} from "primeng/dialog";
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {DialogModule} from "primeng/dialog";
     PetAdoptionComponent,
     TablaValidacionComprobanteComponent,
     TablaValidaFormularioComponent,
+    UploadFileComponent,
 
   ],
   imports: [
