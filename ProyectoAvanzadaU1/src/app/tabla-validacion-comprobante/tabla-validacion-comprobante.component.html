@@ -11,18 +11,18 @@
   </ng-template>
   <ng-template pTemplate="body" let-verificacion>
     <tr>
-      <td>{{verificacion.id}}</td>
-      <td>{{verificacion.fecha}}</td>
-      <td>{{verificacion.tipo}}</td>
-      <td>{{verificacion.estado}}</td>
-      <td>{{verificacion.monto}}</td>
+      <td>{{ verificacion.id }}</td>
+      <td>{{ verificacion.fecha }}</td>
+      <td>{{ verificacion.tipo }}</td>
+      <td>{{ verificacion.estado }}</td>
+      <td>{{ verificacion.monto }}</td>
       <td>
-       <p-button styleClass="p-button-success rounded-button" (click)="onAccept(verificacion)">
-  <i class="pi pi-check"></i>
-</p-button>
-<p-button styleClass="p-button-danger rounded-button" (click)="onReject(verificacion)">
-  <i class="pi pi-times"></i>
-</p-button>
+        <p-button  (click)="onAccept(verificacion)">
+          <i class="pi pi-check"></i>
+        </p-button>
+        <p-button  (click)="onReject(verificacion)">
+          <i class="pi pi-times"></i>
+        </p-button>
       </td>
     </tr>
   </ng-template>
