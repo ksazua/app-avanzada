@@ -130,3 +130,21 @@ tbody tr:hover {
 .status-hold {
   background-color: #ef9a9a;
 }
+
+.my-nav {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.my-nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.my-nav a:hover {
+  color: #007bff;
+}
