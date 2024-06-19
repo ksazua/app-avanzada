@@ -177,15 +177,6 @@ export class TablaValidacionComprobanteComponent  {
   }
 
 
-
-
-
-
-
-
-
-
-
   //metodos para numerar tabla
   pageSize = 5;
   currentPage = 1;
