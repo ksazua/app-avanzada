@@ -26,67 +26,67 @@ export class TablaValidaFormularioComponent {
   petAdoptions: PetAdoption[] = [
     {
       id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      address: '123 Main St, Los Angeles, CA',
-      status: 'completed',
+      firstName: 'Kevin',
+      lastName: 'Azua',
+      email: 'kevinazua@example.com',
+      phone: '0992972223',
+      address: 'Bomboli, Santo Domingo, SD',
+      status: 'completed'
     },
     {
       id: 2,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
+      firstName: 'Josue',
+      lastName: 'Espinoza',
+      email: 'josueespinoza@example.com',
+      phone: '0992992223',
+      address: 'Vergeles, Guayaquil, GYE',
+      status: 'completed'
     },
     {
       id: 3,
-      firstName: 'Josue Espinoza',
-      lastName: 'Zambrano',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
+      firstName: 'Fabricio',
+      lastName: 'Alama',
+      email: 'fabalama@example.com',
+      phone: '0992873334',
+      address: 'Calle 15 Av 17, Manta, MEC',
+      status: 'completed'
     },
     {
       id: 4,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
+      firstName: 'Fernando',
+      lastName: 'Vivanco',
+      email: 'frvivanc@example.com',
+      phone: '0993872224',
+      address: 'Calle 18 Av 19, Manta, MEC',
+      status: 'completed'
     },
     {
       id: 5,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    }
-    ,{
+      firstName: 'Steven',
+      lastName: 'Stopper',
+      email: 'stevenstop@example.com',
+      phone: '0993873224',
+      address: '127 Main St, Los Angeles, CA',
+      status: 'completed'
+    },
+    {
       id: 6,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
-    },{
+      firstName: 'Jack',
+      lastName: 'Doe',
+      email: 'jack.doe@example.com',
+      phone: '0985873224',
+      address: '128 Main St, Los Angeles, CA',
+      status: 'completed'
+    },
+    {
       id: 7,
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane.smith@example.com',
-      phone: '987-654-3210',
-      address: '456 Oak Ave, Los Angeles, CA',
-      status: 'pending',
+      firstName: 'James',
+      lastName: 'Doe',
+      email: 'james.doe@example.com',
+      phone: '0998654572',
+      address: '129 Main St, Los Angeles, CA',
+      status: 'completed'
     }
-
 
   ];
 

@@ -33,31 +33,31 @@ export class TablaValidacionComprobanteComponent  {
   petAdoptions: PetAdoption[] = [
   {
     id: 1,
-    firstName: 'Josue',
-    lastName: 'Espinoza',
-    email: 'josuespin@example.com',
-    phone: '123-456-7890',
-    address: '123 Main St, Los Angeles, CA',
+    firstName: 'Kevin',
+    lastName: 'Azua',
+    email: 'kevinazua@example.com',
+    phone: '0992972223',
+    address: 'Bomboli, Santo Domingo, SD',
     status: 'completed',
-    receiptImagePath: 'img/comprobante1.jpg'
+    receiptImagePath: 'img/comprobante2.jpg'
   },
   {
     id: 2,
-    firstName: 'Kevin',
-    lastName: 'Azua',
-    email: 'azuakke@example.com',
-    phone: '123-456-7891',
-    address: '124 Main St, Los Angeles, CA',
+    firstName: 'Josue',
+    lastName: 'Espinoza',
+    email: 'josueespinoza@example.com',
+    phone: '0992992223',
+    address: 'Vergeles, Guayaquil, GYE',
     status: 'completed',
-    receiptImagePath: 'img/comprobante2.jpg'
+    receiptImagePath: 'img/comprobante1.jpg'
   },
   {
     id: 3,
     firstName: 'Fabricio',
     lastName: 'Alama',
     email: 'fabalama@example.com',
-    phone: '123-456-7892',
-    address: '125 Main St, Los Angeles, CA',
+    phone: '0992873334',
+    address: 'Calle 15 Av 17, Manta, MEC',
     status: 'completed',
     receiptImagePath: 'img/comprobante3.jpg'
   },
@@ -66,8 +66,8 @@ export class TablaValidacionComprobanteComponent  {
     firstName: 'Fernando',
     lastName: 'Vivanco',
     email: 'frvivanc@example.com',
-    phone: '123-456-7893',
-    address: '126 Main St, Los Angeles, CA',
+    phone: '0993872224',
+    address: 'Calle 18 Av 19, Manta, MEC',
     status: 'completed',
     receiptImagePath: 'img/comprobante4.jpg'
   },
@@ -76,7 +76,7 @@ export class TablaValidacionComprobanteComponent  {
     firstName: 'Steven',
     lastName: 'Stopper',
     email: 'stevenstop@example.com',
-    phone: '123-456-7894',
+    phone: '0993873224',
     address: '127 Main St, Los Angeles, CA',
     status: 'completed',
     receiptImagePath: 'img/comprobante5.jpg'
@@ -86,7 +86,7 @@ export class TablaValidacionComprobanteComponent  {
     firstName: 'Jack',
     lastName: 'Doe',
     email: 'jack.doe@example.com',
-    phone: '123-456-7895',
+    phone: '0985873224',
     address: '128 Main St, Los Angeles, CA',
     status: 'completed',
     receiptImagePath: 'img/comprobante6.jpg'
@@ -96,7 +96,7 @@ export class TablaValidacionComprobanteComponent  {
     firstName: 'James',
     lastName: 'Doe',
     email: 'james.doe@example.com',
-    phone: '123-456-7896',
+    phone: '0998654572',
     address: '129 Main St, Los Angeles, CA',
     status: 'completed',
     receiptImagePath: 'img/comprobante7.jpg'
