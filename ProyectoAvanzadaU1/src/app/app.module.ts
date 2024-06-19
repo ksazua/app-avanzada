@@ -24,6 +24,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
+import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     TablaValidacionComprobanteComponent,
     TablaValidaFormularioComponent,
     UploadFileComponent,
+    TablaUploadFileComponent,
   ],
   imports: [
     BrowserModule,
