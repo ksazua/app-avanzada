@@ -7,7 +7,8 @@ import {TablaValidaFormularioComponent} from "./tabla-valida-formulario/tabla-va
 const routes: Routes = [
   { path: 'pet-adoption', component: PetAdoptionComponent },
   { path: 'tabla-validacion-comprobante', component: TablaValidacionComprobanteComponent },
-  { path: 'tabla-valida-formulario', component: TablaValidaFormularioComponent}
+  { path: 'tabla-valida-formulario', component: TablaValidaFormularioComponent},
+  { path: 'upload-file', component: TablaValidaFormularioComponent}
 ];
 
 @NgModule({
