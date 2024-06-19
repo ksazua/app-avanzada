@@ -13,23 +13,28 @@ export class InicioComponent implements OnInit {
   constructor(private router: Router) {
   }
 
-  ngOnInit() {
-    this.items = [
-      {
-        label: 'Iniciar',
-        items: [
-          {
-            label: 'Usuario',
-            icon: 'pi pi-fw pi-user',
-            command: () => {
-              this.router.navigate(['/form-adopcion']);
-            }
-          },
-          {label: 'Administrador', icon: 'pi pi-fw pi-cog'}
-        ]
-      }
-    ];
-  }
-
+ngOnInit() {
+  this.items = [
+    {
+      label: 'Iniciar',
+      items: [
+        {
+          label: 'Usuario',
+          icon: 'pi pi-fw pi-user',
+          command: () => {
+            this.router.navigate(['/form-adopcion']);
+          }
+        },
+        {
+          label: 'Administrador',
+          icon: 'pi pi-fw pi-cog',
+          command: () => {
+            this.router.navigate(['/pet-adoption']);
+          }
+        }
+      ]
+    }
+  ];
+}
 
 }
