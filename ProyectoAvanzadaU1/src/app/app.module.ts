@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import {ToolbarModule} from "primeng/toolbar";
 import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-valida-formulario.component';
 import {DialogModule} from "primeng/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {DialogModule} from "primeng/dialog";
     ButtonModule,
     FormsModule,
     ToolbarModule,
-    DialogModule
+    DialogModule,
+    BrowserAnimationsModule
 
   ],
   providers: [

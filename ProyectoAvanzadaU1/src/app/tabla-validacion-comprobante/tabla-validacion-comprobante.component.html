@@ -80,7 +80,8 @@
           <td class="py-2 px-4">{{ adoption.phone }}</td>
           <td class="py-2 px-4">{{ adoption.address }}</td>
           <td class="py-2 px-4">
-            <p-button (click)="verComprobante(adoption.receiptImagePath)" label="Ver comprobante"></p-button>
+
+            <p-button (click)="verComprobante(adoption.receiptImagePath)" label="Show" />
           </td>
 
 
@@ -108,26 +109,18 @@
       </div>
     </div>
   </div>
-
-
 </div>
 
 
 
+
+
+
 <p-dialog
-  header="Comprobante"
-  [(visible)]="displayModal"
-  [responsive]="true"
-  showEffect="fade"
-  [modal]="true"
-  width="1000"
-  (onHide)="closeModal()">
-  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="receiptImagePath"
-       style="font-size:16px;text-align:center;padding:20px">
-    <div class="ui-grid-row">
-      <div class="ui-grid-col-12" style="text-align:center">
-        <img [src]="receiptImagePath" width="45%" height="85%" alt="Comprobante"/>
-      </div>
-    </div>
-  </div>
+    [modal]="true"
+    [(visible)]="displayModal"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [maximizable]="true">
+  <img class="modal-image" [src]="receiptImagePath" alt="Comprobante" style="width: 100%; height: auto;">
 </p-dialog>

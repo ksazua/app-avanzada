@@ -33,7 +33,7 @@ export class TablaValidacionComprobanteComponent  {
       phone: '123-456-7890',
       address: '123 Main St, Los Angeles, CA',
       status: 'completed',
-     receiptImagePath: 'D:\\Universidad\\7mo semestre\\Avanzada\\AvanzadaProyectoG1\\ProyectoAvanzadaU1\\ProyectoAvanzadaU1\\src\\assets\\imagenes\\comprobante1.jpg',
+     receiptImagePath: 'img/comprobante1.jpg'
     }
 
 
@@ -41,7 +41,6 @@ export class TablaValidacionComprobanteComponent  {
 
 
 
-  // Define la propiedad progressWidth y su lógica de cálculo
   get progressWidth(): string {
     // Aquí puedes definir la lógica para calcular el ancho de la barra de progreso
     // Por ejemplo, puedes calcularlo en base a la cantidad de adopciones completadas
@@ -125,10 +124,8 @@ export class TablaValidacionComprobanteComponent  {
     this.cd.detectChanges();
   }
 
-  closeModal() {
-    this.displayModal = false;
-    this.cd.detectChanges();
-  }
+
+
 
 
 
