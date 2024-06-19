@@ -1,4 +1,6 @@
-import {Component, ChangeDetectorRef} from '@angular/core';
+import {Component, ChangeDetectorRef, ViewEncapsulation} from '@angular/core';
+import {ConfirmationService} from "primeng/api";
+import Swal from "sweetalert2";
 
 interface PetAdoption {
   id: number;
@@ -21,9 +23,13 @@ interface Event {
 @Component({
   selector: 'app-tabla-validacion-comprobante',
   templateUrl: './tabla-validacion-comprobante.component.html',
-  styleUrl: './tabla-validacion-comprobante.component.css'
+  styleUrl: './tabla-validacion-comprobante.component.css',
+
 })
 export class TablaValidacionComprobanteComponent  {
+
+  constructor(private cd: ChangeDetectorRef) { }
+
   petAdoptions: PetAdoption[] = [
   {
     id: 1,
@@ -99,6 +105,7 @@ export class TablaValidacionComprobanteComponent  {
 
 
 
+
   get progressWidth(): string {
     // Aquí puedes definir la lógica para calcular el ancho de la barra de progreso
     // Por ejemplo, puedes calcularlo en base a la cantidad de adopciones completadas
@@ -126,14 +133,56 @@ export class TablaValidacionComprobanteComponent  {
   }
 
   aceptar(id: number) {
-
-    console.log(`Adopción con ID ${id} aprobada.`);
+    Swal.fire({
+      title: '¿Estás seguro de que deseas aprobar?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#6abfab',
+      cancelButtonColor: '#ff1493',
+      confirmButtonText: 'Sí, apruébalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Aprobado!',
+          'La adopción ha sido aprobada.',
+          'success'
+        )
+        console.log(`Adopción con ID ${id} aprobada.`);
+        // Aquí puedes agregar la lógica para manejar la aprobación
+      }
+    });
   }
 
   rechazar(id: number) {
-
-    console.log(`Adopción con ID ${id} rechazada.`);
+    Swal.fire({
+      title: '¿Estás seguro de que deseas rechazar?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#6abfab',
+      cancelButtonColor: '#ff1493',
+      confirmButtonText: 'Sí, recházalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Rechazado!',
+          'La adopción ha sido rechazada.',
+          'success'
+        )
+        console.log(`Adopción con ID ${id} rechazada.`);
+        // Aquí puedes agregar la lógica para manejar el rechazo
+      }
+    });
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -175,7 +224,7 @@ export class TablaValidacionComprobanteComponent  {
 
 
 
-  constructor(private cd: ChangeDetectorRef) {}
+
   verComprobante(receiptPath: string) {
     this.receiptImagePath = receiptPath;
     this.displayModal = true;

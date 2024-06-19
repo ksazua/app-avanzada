@@ -24,6 +24,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import {MatIcon} from "@angular/material/icon";
 import {MenuModule} from 'primeng/menu';
 import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
+import {ConfirmationService} from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 
@@ -35,9 +37,8 @@ import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
     TablaValidaFormularioComponent,
     UploadFileComponent,
     TablaUploadFileComponent,
-
     InicioComponent,
-      FormAdopcionComponent,
+    FormAdopcionComponent
 
   ],
   imports: [
@@ -57,12 +58,14 @@ import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
     HttpClientModule,
     MatMenuModule,
     MatIcon,
-    MenuModule
+    MenuModule,
+    ConfirmDialogModule
 
   ],
   providers: [
     provideClientHydration(),
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

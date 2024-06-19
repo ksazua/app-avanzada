@@ -95,7 +95,7 @@
 }
 
 .button-approve {
-  background-color: #6abfab; /* Excel's green color */
+  background-color: #6abfab;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -221,3 +221,5 @@
   font-size: 14px; /* Ajuste de tamaño para texto pequeño */
   color: rgb(31, 41, 55);
 }
+
+

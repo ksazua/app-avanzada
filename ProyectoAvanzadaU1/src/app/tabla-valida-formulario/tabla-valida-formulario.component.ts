@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Swal from "sweetalert2";
 interface PetAdoption {
   id: number;
   firstName: string;
@@ -119,13 +120,47 @@ export class TablaValidaFormularioComponent {
   }
 
   aceptar(id: number) {
-
-    console.log(`Adopción con ID ${id} aprobada.`);
+    Swal.fire({
+      title: '¿Estás seguro de que deseas aprobar?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#6abfab',
+      cancelButtonColor: '#ff1493',
+      confirmButtonText: 'Sí, apruébalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Aprobado!',
+          'La adopción ha sido aprobada.',
+          'success'
+        )
+        console.log(`Adopción con ID ${id} aprobada.`);
+        // Aquí puedes agregar la lógica para manejar la aprobación
+      }
+    });
   }
 
   rechazar(id: number) {
-
-    console.log(`Adopción con ID ${id} rechazada.`);
+    Swal.fire({
+      title: '¿Estás seguro de que deseas rechazar?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#6abfab',
+      cancelButtonColor: '#ff1493',
+      confirmButtonText: 'Sí, recházalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Rechazado!',
+          'La adopción ha sido rechazada.',
+          'success'
+        )
+        console.log(`Adopción con ID ${id} rechazada.`);
+        // Aquí puedes agregar la lógica para manejar el rechazo
+      }
+    });
   }
 
 

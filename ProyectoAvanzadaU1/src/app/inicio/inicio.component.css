@@ -34,7 +34,7 @@ button {
   top: 20px;
   right: 10px;
   color: white;
-  border: none; /* Agregado para eliminar el cuadrado blanco */
+  border: none;
   font-size: 25px;
   font-family: 'Georgia', serif;
 }
