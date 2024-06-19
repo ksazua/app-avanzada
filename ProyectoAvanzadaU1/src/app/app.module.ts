@@ -18,11 +18,11 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< Updated upstream
+
 import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
-=======
+
 import { InicioComponent } from './inicio/inicio.component';
->>>>>>> Stashed changes
+
 
 
 @NgModule({
@@ -32,11 +32,10 @@ import { InicioComponent } from './inicio/inicio.component';
     TablaValidacionComprobanteComponent,
     TablaValidaFormularioComponent,
     UploadFileComponent,
-<<<<<<< Updated upstream
     TablaUploadFileComponent,
-=======
+
     InicioComponent,
->>>>>>> Stashed changes
+
   ],
   imports: [
     BrowserModule,
