@@ -1,4 +1,5 @@
-.p-fileupload .p-button i {
-    margin-right: 0.5em;
-  }
-  
+/* Ocultar los botones "Upload" y "Cancel" */
+.ui-fileupload-buttonbar .ui-button[icon="pi pi-upload"], 
+.ui-fileupload-buttonbar .ui-button[icon="pi pi-times"] {
+    display: none !important;
+}

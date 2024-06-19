@@ -1,11 +1,26 @@
 <div class="file-upload-container">
-
-    <p-fileUpload name="file" accept=".pdf" maxFileSize="5000000" 
-    mode="advanced" auto="true" chooseLabel="Seleccionar Archivo" uploadLabel="Subir" cancelLabel="Cancelar"
-    (onSelect)="onSelect($event)">
+  <p-fileUpload 
+    name="file" 
+    accept=".pdf" 
+    maxFileSize="5000000" 
+    mode="advanced" 
+    [auto]="false" 
+    chooseLabel="Seleccionar Archivo" 
+    [showUploadButton]="false" 
+    [showCancelButton]="false"
+    (onSelect)="onSelect($event)" 
+    (onRemove)="onRemove($event)">
   </p-fileUpload>
-  
+
+  <div class="flex justify-center items-center space-x-4 p-mt-2">
+    <h2 class="text-xl font-bold text-20">Enviar</h2>
+    <button 
+      class="button-approve" 
+      (click)="onSubmit()" 
+      [disabled]="!file || isSubmitted">
+      <i class="pi pi-check"></i>
+    </button>
+  </div>
+
   <p-messages></p-messages>
-    </div>
-  
-      
+</div>
