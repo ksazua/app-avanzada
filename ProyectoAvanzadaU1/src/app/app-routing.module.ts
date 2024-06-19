@@ -5,11 +5,18 @@ import { TablaValidacionComprobanteComponent } from './tabla-validacion-comproba
 import {TablaValidaFormularioComponent} from "./tabla-valida-formulario/tabla-valida-formulario.component";
 import {UploadFileComponent} from "./upload-file/upload-file.component";
 
+import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
+
+import {InicioComponent} from "./inicio/inicio.component";
+
+
 const routes: Routes = [
+  { path: '', component: InicioComponent },
   { path: 'pet-adoption', component: PetAdoptionComponent },
   { path: 'tabla-validacion-comprobante', component: TablaValidacionComprobanteComponent },
   { path: 'tabla-valida-formulario', component: TablaValidaFormularioComponent},
-  { path: 'upload-file', component: UploadFileComponent}
+  { path: 'upload-file', component: TablaUploadFileComponent },
+
 ];
 
 @NgModule({

@@ -11,19 +11,18 @@ import { ButtonModule } from "primeng/button";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToolbarModule } from "primeng/toolbar";
 import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-valida-formulario.component';
-
 import {DialogModule} from "primeng/dialog";
-
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
-
-
-
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
+
+import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
+
+import { InicioComponent } from './inicio/inicio.component';
+
 
 
 @NgModule({
@@ -33,6 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     TablaValidacionComprobanteComponent,
     TablaValidaFormularioComponent,
     UploadFileComponent,
+    TablaUploadFileComponent,
+
+    InicioComponent,
+
   ],
   imports: [
     BrowserModule,

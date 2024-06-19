@@ -1,0 +1,40 @@
+<!-- tabla-upload-file.component.html -->
+
+<header class="flex justify-between items-center py-4 px-8 bg-white shadow-md rounded-md mb-4">
+    <div class="flex items-center">
+      <h1 class="text-2xl font-bold">ProyectoAdoptame</h1>
+    </div>
+  </header>
+  
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-1/6 bg-gray-100 p-4">
+      <div class="mb-4 text-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg" alt="User" class="w-12 h-12 rounded-full mx-auto">
+        <h2 class="mt-2 text-sm">Hola, Larissa</h2>
+        <p class="text-gray-600 text-xs">Super admin</p>
+      </div>
+      <nav>
+        <ul>
+          <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Todos los animales</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Panel</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Solicitudes</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Reportes</li>
+          <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Ajustes</li>
+        </ul>
+      </nav>
+    </aside>
+  
+    <!-- Main Content -->
+    <div class="w-5/6 h-screen overflow-auto p-4">
+      <!-- Reemplazar la tabla de solicitudes con UploadFileComponent -->
+      <div class="bg-white shadow-md rounded-md p-4 mt-8">
+        <app-upload-file></app-upload-file>
+      </div>
+    </div>
+  </div>
+  
+  <p-dialog [modal]="true" [(visible)]="displayModal" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
+    <img class="modal-image" [src]="receiptImagePath" alt="Comprobante" style="width: 100%; height: auto;">
+  </p-dialog>
+  
