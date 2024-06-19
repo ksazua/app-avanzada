@@ -1,1 +1,11 @@
-<p>upload-file works!</p>
+<div class="file-upload-container">
+
+    <p-fileUpload name="file" accept=".pdf" maxFileSize="5000000" 
+    mode="advanced" auto="true" chooseLabel="Seleccionar Archivo" uploadLabel="Subir" cancelLabel="Cancelar"
+    (onSelect)="onSelect($event)">
+  </p-fileUpload>
+  
+  <p-messages></p-messages>
+    </div>
+  
+      
