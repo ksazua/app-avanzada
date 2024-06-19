@@ -18,40 +18,7 @@
   object-fit: cover;
 }
 
-.centered-text {
-  z-index: 1;
-  text-align: center;
-  color: white;
-  font-size: 2em;
-  margin-bottom: 20px;
-}
 
-.transparent-button {
-  z-index: 1;
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 25px 50px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-
-}
-.transparent-button {
-  z-index: 1;
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 15px 30px; /* Aumenta el padding para hacer el botón más grande */
-  font-size: 20px; /* Aumenta el tamaño de la fuente */
-  cursor: pointer;
-  transition: all 0.3s ease; /* Agrega una transición para suavizar los cambios de estado */
-}
-
-.transparent-button:hover {
-  background: rgba(255, 255, 255, 0.1); /* Agrega un fondo sutil al pasar el mouse */
-}
 
 .centered-text {
   z-index: 1;
@@ -62,4 +29,35 @@
   letter-spacing: 1px; /* Aumenta el espaciado entre las letras */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto para darle más profundidad */
   margin-bottom: 20px;
+}
+
+
+.custom-menu .p-menuitem-link {
+  color: white !important;
+  font-size: 20px !important;
+}
+
+.custom-menu .p-menuitem-icon {
+  color: white !important;
+  font-size: 20px !important;
+}
+
+.button-aceptar {
+  background-color: white;
+  color: black; /* Cambia el color del texto a negro para que sea visible en el fondo blanco */
+  border: 2px solid white; /* Agrega un borde blanco alrededor del botón */
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px; /* Aumenta el tamaño del texto */
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.3s ease-out;
+}
+
+.button-aceptar:hover {
+  background-color: #ddd;
+  color: black; /* Mantiene el color del texto en negro cuando el mouse pasa por encima */
 }

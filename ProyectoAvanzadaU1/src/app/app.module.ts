@@ -18,12 +18,11 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
-
 import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
-
 import { InicioComponent } from './inicio/inicio.component';
-
-
+ import {MatMenuModule} from '@angular/material/menu';
+import {MatIcon} from "@angular/material/icon";
+import {MenuModule} from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -48,12 +47,13 @@ import { InicioComponent } from './inicio/inicio.component';
     ReactiveFormsModule,
     ToolbarModule,
     DialogModule,
-
     BrowserAnimationsModule,
-
     FileUploadModule,
     ToastModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatIcon,
+    MenuModule
 
   ],
   providers: [
