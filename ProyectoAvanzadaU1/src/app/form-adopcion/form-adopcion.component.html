@@ -1,7 +1,7 @@
 <form [formGroup]="adoptionForm" class="container mt-5" (ngSubmit)="onSubmit($event)">
     <div class="form-header text-center mb-4">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI1culMu2Kfhyg5ZHkKA4UmhxDB9kVaNVYdg&s" alt="Asociación Una Sola Misión">
-        <div style="color: rgba(255, 55, 0, 0.896)">CUESTIONARIO PRE-ADOPCIÓN ASOCIACIÓN UNA SOLA MISIÓN</div>
+        <div style="color: #ec4899">CUESTIONARIO PRE-ADOPCIÓN ASOCIACIÓN PROYECTO ADOPTAME</div>
     </div>
     <div class="form-description mb-4">
         El objetivo de este cuestionario es encontrar la combinación perfecta entre mascota y amo óptima, de manera que ambos sean felices tras la adopción.
@@ -159,7 +159,7 @@
                 <legend>Vivienda</legend>
                 <p>
                     <label>Tipo de vivienda: <label style="color: red;">*</label></label><br>
-                    <select class="form-select" formControlName="houseType">
+                    <select class="block w-full h-10 bg-white border border-gray-300 rounded-md shadow-sm custom-border" formControlName="houseType">
                         <option value="house">Casa</option>
                         <option value="apartment">Apartamento</option>
                         <option value="other">Otro</option>
@@ -205,7 +205,7 @@
                 <legend>Sobre la adopción</legend>
                 <p>
                     <label>¿Qué tipo de animal busca? <label style="color: red;">*</label></label><br>
-                    <select class="form-select" formControlName="petType">
+                    <select class="block w-full h-10 bg-white border border-gray-300 rounded-md shadow-sm custom-border" formControlName="petType">
                         <option value="dog">Perro</option>
                         <option value="cat">Gato</option>
                         <option value="other">Otro</option>
@@ -216,7 +216,7 @@
                 </div>
                 <p>
                     <label>¿Por qué desea adoptar una mascota? <label style="color: red;">*</label></label><br>
-                    <select class="form-select" formControlName="reason">
+                    <select class="block w-full h-10 bg-white border border-gray-300 rounded-md shadow-sm custom-border" formControlName="reason">
                         <option value="companionship">Por compañía</option>
                         <option value="breeding">Para cría</option>
                         <option value="hunt">Para caza</option>
