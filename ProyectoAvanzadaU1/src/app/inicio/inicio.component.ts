@@ -22,7 +22,7 @@ ngOnInit() {
           label: 'Usuario',
           icon: 'pi pi-fw pi-user',
           command: () => {
-            this.router.navigate(['/form-adopcion']);
+            this.router.navigate(['/pet-adoption']);
           }
         },
         {
