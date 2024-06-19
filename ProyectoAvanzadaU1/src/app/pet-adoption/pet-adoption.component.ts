@@ -8,7 +8,9 @@ interface PetAdoption {
   phone: string;
   address: string;
   status: string;
-  documentId: string;
+  idDocumento: string;
+  cedula: string; // Cédula
+  ocupacion: string; // Ocupación
 }
 
 interface Step {
@@ -33,14 +35,17 @@ export class PetAdoptionComponent {
       phone: '123-456-7890',
       address: '123 Main St, Los Angeles, CA',
       status: 'completed',
-      documentId: 'DOC123456'
+      idDocumento: 'DOC123456',
+      cedula: '1234567890', // Ejemplo de cédula
+      ocupacion: 'Developer' // Ejemplo de ocupación
     }
-    // Añade más datos según sea necesario
+    // Puedes añadir más datos de adopciones según sea necesario
   ];
 
   get user() {
     return this.petAdoptions.find(petAdoption => petAdoption.id === 1);
   }
+
 
   steps: Step[] = [
     { label: 'Review started', icon: 'pi pi-envelope', date: 'Jul 12', status: 'completed' },
