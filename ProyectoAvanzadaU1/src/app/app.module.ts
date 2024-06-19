@@ -23,6 +23,9 @@ import { InicioComponent } from './inicio/inicio.component';
  import {MatMenuModule} from '@angular/material/menu';
 import {MatIcon} from "@angular/material/icon";
 import {MenuModule} from 'primeng/menu';
+import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import {MenuModule} from 'primeng/menu';
     TablaUploadFileComponent,
 
     InicioComponent,
+      FormAdopcionComponent,
 
   ],
   imports: [

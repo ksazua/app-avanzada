@@ -103,5 +103,5 @@ export class PetAdoptionComponent {
     }
     return '';
   }
-  
+
 }

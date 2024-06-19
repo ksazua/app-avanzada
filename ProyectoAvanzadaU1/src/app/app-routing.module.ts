@@ -8,10 +8,12 @@ import {UploadFileComponent} from "./upload-file/upload-file.component";
 import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
 
 import {InicioComponent} from "./inicio/inicio.component";
+import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
 
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
+  { path: 'form-adopcion', component: FormAdopcionComponent },
   { path: 'pet-adoption', component: PetAdoptionComponent },
   { path: 'tabla-validacion-comprobante', component: TablaValidacionComprobanteComponent },
   { path: 'tabla-valida-formulario', component: TablaValidaFormularioComponent},
