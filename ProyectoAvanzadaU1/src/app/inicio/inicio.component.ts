@@ -29,7 +29,7 @@ ngOnInit() {
           label: 'Administrador',
           icon: 'pi pi-fw pi-cog',
           command: () => {
-            this.router.navigate(['/pet-adoption']);
+            this.router.navigate(['/tabla-valida-formulario']);
           }
         }
       ]
