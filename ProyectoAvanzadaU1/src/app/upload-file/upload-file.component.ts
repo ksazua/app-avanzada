@@ -24,11 +24,20 @@ export class UploadFileComponent {
   }
 
   onSelect(event: any) {
+    const file = event.files[0];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+
     if (this.file) {
       this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: 'Ya se ha seleccionado un archivo. Elimine el archivo actual para seleccionar uno nuevo.' });
       return;
     }
-    this.file = event.files[0];
+
+    if (!allowedTypes.includes(file.type)) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Solo se permiten archivos de imagen (jpg, png, gif, bmp, webp).' });
+      return;
+    }
+
+    this.file = file;
     this.isSubmitted = false;
   }
 
