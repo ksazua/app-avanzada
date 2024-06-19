@@ -1,57 +1,169 @@
-.full-screen-image {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+body {
+  margin: 0;
+  font-family: 'Geomanist', sans-serif;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #24374e; /* Color para h1 */
+  font-weight: bold; /* Negrita para h1 */
+  letter-spacing: normal; /* Espaciado normal */
+}
+
+h2 {
+  color: #24374e; /* Color para h1 */
+  font-weight: normal !important;
+}
+
+h3 {
+  color: #24374e; /* Color para h1 * Color para h2 */
+  font-weight: normal !important;
+}
+
+/* Estilos del contenedor principal */
+.main-container {
+  margin: 0 100px 100px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.full-screen-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%; /* Estirado de lado a lado */
+  z-index: 1000;
 }
 
-.centered-text {
-  z-index: 1;
-  text-align: center;
-  color: white;
-  font-size: 3em;
-  font-family: 'Georgia', serif;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
+/* Estilos del logo */
+.logo-container h1 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #222F61;
+  margin-bottom: 20px; /* Ajusta este valor según necesites */
 }
 
-button {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  color: white;
+.left-content h1 {
+  font-size: 100px;
+  color: #24374E;
+  margin-bottom: 20px; /* Ajusta este valor según necesites */
+}
+/* Estilos de los enlaces de navegación */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/* Estilos de los botones de login y registro */
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.login-button,
+.register-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #345995;
+  color: #fff;
   border: none;
-  font-size: 25px;
-  font-family: 'Georgia', serif;
+  margin-left: 20px;
+  cursor: pointer;
+  border-radius: 5px; /* Borde redondeado */
 }
 
-::ng-deep .p-menubar .p-menuitem-link {
-  color: white !important;
-  font-size: 20px !important;
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+.login-button:hover,
+.register-button:hover {
+  background-color: #1c3e79;
 }
 
-::ng-deep .p-menubar .p-menuitem-icon {
-  color: white !important;
-  font-size: 20px !important;
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+/* Estilos del contenido principal */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 100%;
 }
 
+/* Estilos del contenido izquierdo */
+.left-content {
+  flex: 1;
+  max-width: 60%;
+  margin-right: 20px;
+}
+
+.left-content h1 {
+  font-size: 100px;
+  color: #24374E;
+}
+
+.left-content p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+/* Estilos de la caja de búsqueda */
+.search-box {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1em;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #345995;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos del contenido derecho */
+.right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.right-content img {
+  width: 90%;
+  max-height: 600px;
+  margin-top: 83px !important; /* Ajusta el margen superior para que coincida con el texto del left-content */
+}
+
+/* Custom Menu Styles */
+.custom-menu {
+  z-index: 20;
+}

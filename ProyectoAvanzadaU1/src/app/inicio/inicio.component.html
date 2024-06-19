@@ -1,12 +1,33 @@
-<div class="full-screen-image">
-  <img src="img/dog-2606759.jpg" alt="Imagen de fondo">
-  <p class="centered-text">Adoptar es darle una segunda oportunidad y ganar un amigo fiel para toda la vida.</p>
+<div class="main-container">
 
-  <p-menu #menu [model]="items" [popup]="true" styleClass="custom-menu"></p-menu>
-  <p>hola mundo</p>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <h1>ProyectoAdoptame</h1>
+    </div>
+    <ul class="nav-links">
 
+    </ul>
+    <div class="button-container">
+      <button pButton type="button" label="Iniciar" (mouseover)="menu.toggle($event)" class="login-button"></button>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="content-container">
+
+    <!-- Banner -->
+    <section class="main-content">
+      <div class="left-content">
+        <h1>Adopta una mascota</h1>
+        <p class="text-justify">Adoptar una mascota es una experiencia increíble que cambia vidas, tanto para ti como para el animal que le das un hogar. En ProyectoAdoptame, nos dedicamos a conectar mascotas necesitadas con personas amorosas que están listas para proporcionarles una segunda oportunidad. Cada año, miles de animales son abandonados o necesitan ser reubicados, y tú puedes ser la solución.</p>
+      </div>
+      <div class="right-content">
+        <img src="https://i.postimg.cc/mr6Rg6Qs/Banner.png" alt="Dog Image">
+      </div>
+    </section>
+
+  </div>
+
+  <p-menu class="custom-menu" [model]="items" [popup]="true" #menu appendTo="body"></p-menu>
 </div>
-
-<p-menu class="custom-menu" [model]="items" [popup]="true" #menu appendTo="body"></p-menu>
-
-<button pButton type="button" label="Iniciar" (mouseover)="menu.toggle($event)" ></button>
