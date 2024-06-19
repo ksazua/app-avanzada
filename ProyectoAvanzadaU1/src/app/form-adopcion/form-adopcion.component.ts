@@ -250,7 +250,7 @@ private updateCurrentPetsValidators(currentPets: string): void {
         if (result.isConfirmed) {
           Swal.fire({
             title: "Éxito!",
-            text: "Su formulario se ha enviado con éxito.",
+            text: "Su formulario se ha enviado con éxito. Por favor revise su correo electrónico para más información.",
             icon: "success"
           });
           this.adoptionForm.reset();
