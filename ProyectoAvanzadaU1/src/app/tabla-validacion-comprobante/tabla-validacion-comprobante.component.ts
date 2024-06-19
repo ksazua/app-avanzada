@@ -25,19 +25,77 @@ interface Event {
 })
 export class TablaValidacionComprobanteComponent  {
   petAdoptions: PetAdoption[] = [
-    {
-      id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      address: '123 Main St, Los Angeles, CA',
-      status: 'completed',
-     receiptImagePath: 'img/comprobante1.jpg'
-    }
-
-
-  ];
+  {
+    id: 1,
+    firstName: 'Josue',
+    lastName: 'Espinoza',
+    email: 'josuespin@example.com',
+    phone: '123-456-7890',
+    address: '123 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante1.jpg'
+  },
+  {
+    id: 2,
+    firstName: 'Kevin',
+    lastName: 'Azua',
+    email: 'azuakke@example.com',
+    phone: '123-456-7891',
+    address: '124 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante2.jpg'
+  },
+  {
+    id: 3,
+    firstName: 'Fabricio',
+    lastName: 'Alama',
+    email: 'fabalama@example.com',
+    phone: '123-456-7892',
+    address: '125 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante3.jpg'
+  },
+  {
+    id: 4,
+    firstName: 'Fernando',
+    lastName: 'Vivanco',
+    email: 'frvivanc@example.com',
+    phone: '123-456-7893',
+    address: '126 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante4.jpg'
+  },
+  {
+    id: 5,
+    firstName: 'Steven',
+    lastName: 'Stopper',
+    email: 'stevenstop@example.com',
+    phone: '123-456-7894',
+    address: '127 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante5.jpg'
+  },
+  {
+    id: 6,
+    firstName: 'Jack',
+    lastName: 'Doe',
+    email: 'jack.doe@example.com',
+    phone: '123-456-7895',
+    address: '128 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante6.jpg'
+  },
+  {
+    id: 7,
+    firstName: 'James',
+    lastName: 'Doe',
+    email: 'james.doe@example.com',
+    phone: '123-456-7896',
+    address: '129 Main St, Los Angeles, CA',
+    status: 'completed',
+    receiptImagePath: 'img/comprobante7.jpg'
+  }
+];
 
 
 
