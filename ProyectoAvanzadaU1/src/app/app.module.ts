@@ -11,14 +11,14 @@ import { ButtonModule } from "primeng/button";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToolbarModule } from "primeng/toolbar";
 import { TablaValidaFormularioComponent } from './tabla-valida-formulario/tabla-valida-formulario.component';
-<<<<<<< HEAD
+
 import {DialogModule} from "primeng/dialog";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-=======
-import { DialogModule } from "primeng/dialog";
->>>>>>> 9036afc069105254fc4ab436273ea9f16aef2e57
+
+
+
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
@@ -45,14 +45,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     ToolbarModule,
     DialogModule,
-<<<<<<< HEAD
-    BrowserAnimationsModule
 
-=======
+    BrowserAnimationsModule,
+
     FileUploadModule,
     ToastModule,
-    HttpClientModule  
->>>>>>> 9036afc069105254fc4ab436273ea9f16aef2e57
+    HttpClientModule
+
   ],
   providers: [
     provideClientHydration(),
