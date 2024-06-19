@@ -7,10 +7,11 @@ import {Router} from "@angular/router";
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
-export class InicioComponent implements OnInit{
-  items: MenuItem[]| undefined
+export class InicioComponent implements OnInit {
+  items: MenuItem[] | undefined
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
     this.items = [
@@ -20,7 +21,9 @@ export class InicioComponent implements OnInit{
           {
             label: 'Usuario',
             icon: 'pi pi-fw pi-user',
-            command: () => { this.router.navigate(['/form-adopcion']); }
+            command: () => {
+              this.router.navigate(['/form-adopcion']);
+            }
           },
           {label: 'Administrador', icon: 'pi pi-fw pi-cog'}
         ]
