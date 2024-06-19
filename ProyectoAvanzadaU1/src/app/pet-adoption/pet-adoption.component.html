@@ -15,7 +15,7 @@
     <!-- Botón de notificaciones (campana) -->
     <button type="button" pButton icon="pi pi-bell" class="p-button p-button-icon-only"></button>
     <!-- Botón de cerrar sesión -->
-    <button type="button" pButton icon="pi pi-sign-out" class="p-button p-button-icon-only"></button>
+    <button type="button" pButton icon="pi pi-sign-out" class="p-button p-button-icon-only" routerLink="/"></button>
   </div>
 </header>
 
@@ -33,7 +33,7 @@
     <nav>
       <ul>
         <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Dashboard</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer">Ajustes</li>
+        <li pButton label="Llenar formulario" icon="pi pi-file" class="p-button-rounded p-button-success p-mr-2" routerLink="/form-adopcion"></li>
       </ul>
     </nav>
   </aside>
@@ -151,7 +151,7 @@
             </tbody>
           </table>
         </div>
-        <button pButton type="button" label="Llenar formulario" icon="pi pi-file" class="p-button-rounded p-button-success p-mr-2" routerLink="/form-adopcion"></button>
+
       </div>
     </div>
   </div>
