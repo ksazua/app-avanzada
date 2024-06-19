@@ -2,6 +2,14 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import Swal from 'sweetalert2';
 
+export function onlyLettersValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    const onlyLetters = /^[a-zA-Z\s]+$/.test(value);
+    return onlyLetters ? null : { 'onlyLetters': { value } };
+  };
+}
+
 export function onlyNumbersValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value = control.value;
@@ -54,8 +62,8 @@ export class FormAdopcionComponent {
 
   private buildForm(): void {
     this.adoptionForm = this.fb.group({
-      name: new FormControl ('', [Validators.required, Validators.maxLength(50)]),
-      lastName: new FormControl ('', Validators.required),
+      name: new FormControl ('', [Validators.required, Validators.maxLength(50), onlyLettersValidator()]),
+      lastName: new FormControl ('', [Validators.required, onlyLettersValidator()]),
       dni: new FormControl('',[Validators.required,Validators.maxLength(10),Validators.minLength(10), onlyNumbersValidator(), noRepeatedDigitsValidator()]),
       birthYear: ['', [Validators.required, adultAgeValidator()]],
       address: ['', Validators.required],
@@ -69,9 +77,9 @@ export class FormAdopcionComponent {
       children: ['', Validators.required],
       numberOfChildren: [{ value: '', disabled: true }],
       futureChildren: [{ value: '', disabled: true }],
-      occupation: ['', Validators.required],
+      occupation: new FormControl ('', [Validators.required, onlyLettersValidator()]),
       workHours: ['', Validators.required],
-      vacations: ['', Validators.required],
+      vacations: new FormControl ('', [Validators.required, onlyLettersValidator()]),
       houseType: ['', Validators.required],
       houseOwner: ['', Validators.required],
       housePermission: [{ value: '', disabled: true }],
@@ -85,7 +93,7 @@ export class FormAdopcionComponent {
       currentPetDetails: [{ value: '', disabled: true }],
       petsNeutered: [{ value: '', disabled: true }],
       petsVaccinated: [{ value: '', disabled: true }],
-      financialAbility: ['', Validators.required],
+      financialAbility: new FormControl ('', [Validators.required, onlyLettersValidator()]),
       additionalInfo: ['', Validators.required]
     });
 

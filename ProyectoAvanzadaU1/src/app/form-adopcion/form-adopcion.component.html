@@ -18,7 +18,8 @@
                     <input type="text" formControlName="name" class="form-control">
                 </p>
                 <div *ngIf="nameField?.errors && nameField?.touched">
-                    <small *ngIf="nameField?.hasError('required')">Es un campo requerido</small>
+                    <small *ngIf="nameField?.hasError('required')">Es un campo requerido</small><br>
+                    <small *ngIf="nameField?.hasError('onlyLetters')">Solo se permiten letras</small>
                     <small *ngIf="nameField?.hasError('maxlength')">Debe contener máximo 50 caracteres</small>
                 </div>
                 <p>
@@ -26,7 +27,8 @@
                     <input type="text" formControlName="lastName" class="form-control">
                 </p>
                 <div *ngIf="lastNameField?.errors && lastNameField?.touched">
-                    <small *ngIf="lastNameField?.hasError('required')">Es un campo requerido</small>
+                    <small *ngIf="lastNameField?.hasError('required')">Es un campo requerido</small><br>
+                    <small *ngIf="lastNameField?.hasError('onlyLetters')">Solo se permiten letras</small>
                 </div>
                 <p>
                     <label for="dni">Cédula o DNI: <label style="color: red;">*</label></label><br>
@@ -136,7 +138,8 @@
                     <input type="text" formControlName="occupation" class="form-control">
                 </p>
                 <div *ngIf="adoptionForm.get('occupation')?.errors && adoptionForm.get('occupation')?.touched">
-                    <small *ngIf="adoptionForm.get('occupation')?.hasError('required')">Es un campo requerido</small>
+                    <small *ngIf="adoptionForm.get('occupation')?.hasError('required')">Es un campo requerido</small><br>
+                    <small *ngIf="adoptionForm.get('occupation')?.hasError('onlyLetters')">Solo se permiten letras</small>
                 </div>
                 <p>
                     <label for="workHours">¿Cuántas horas al día utiliza para su ocupación? <label style="color: red;">*</label></label><br>
@@ -150,7 +153,8 @@
                     <input type="text" formControlName="vacations" class="form-control">
                 </p>
                 <div *ngIf="adoptionForm.get('vacations')?.errors && adoptionForm.get('vacations')?.touched">
-                    <small *ngIf="adoptionForm.get('vacations')?.hasError('required')">Es un campo requerido</small>
+                    <small *ngIf="adoptionForm.get('vacations')?.hasError('required')">Es un campo requerido</small><br>
+                    <small *ngIf="adoptionForm.get('vacations')?.hasError('onlyLetters')">Solo se permiten letras</small>
                 </div>
             </fieldset>
         </div>
@@ -280,6 +284,7 @@
                 </p>
                 <div *ngIf="adoptionForm.get('financialAbility')?.errors && adoptionForm.get('financialAbility')?.touched">
                     <small *ngIf="adoptionForm.get('financialAbility')?.hasError('required')">Es un campo requerido</small>
+                    <small *ngIf="adoptionForm.get('financialAbility')?.hasError('onlyLetters')">Solo se permiten letras</small>
                 </div>
                 <p>
                     <label for="additionalInfo">Por favor, proporcione cualquier otra información que considere importante para su solicitud de adopción:</label><br>
