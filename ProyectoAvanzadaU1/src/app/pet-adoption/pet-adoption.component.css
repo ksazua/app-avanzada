@@ -241,3 +241,23 @@
     font-size: 14px; /* Tamaño de fuente 14px */
   }
 
+/* Estilos para la ventana modal */
+.modal {
+  z-index: 1000; /* Asegura que la modal esté por encima de otros elementos */
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal .bg-gray-900 {
+  background-color: rgba(0, 0, 0, 0.5); /* Transparencia de fondo oscuro */
+}
+
+.modal .bg-white {
+  background-color: #f0f4f8; /* Color de fondo para la modal */
+}
+
+.modal button {
+  cursor: pointer;
+}

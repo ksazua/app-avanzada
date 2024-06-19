@@ -46,14 +46,13 @@ export class PetAdoptionComponent {
     return this.petAdoptions.find(petAdoption => petAdoption.id === 1);
   }
 
-
   steps: Step[] = [
-    { label: 'Review started', icon: 'pi pi-envelope', date: 'Jul 12', status: 'completed' },
-    { label: 'Approved', icon: 'pi pi-check', date: 'Jul 12', status: 'completed' },
-    { label: 'Foster contract', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
-    { label: 'CC Collected', icon: 'pi pi-credit-card', date: 'Jul 12', status: 'completed' },
-    { label: 'Foster sent out', icon: 'pi pi-send', date: 'Jul 12', status: 'hold' },
-    { label: 'Pet adopted', icon: 'pi pi-heart', date: 'Jul 12', status: 'upcoming' }
+    { label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
+    { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'hold' },
+    { label: 'Enviar pago', icon: 'pi pi-send', date: 'Jul 12', status: 'upcoming' },
+    { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'upcoming' },
+    { label: 'Entrevista', icon: 'pi pi-comment', date: 'Jul 12', status: 'upcoming' },
+    { label: 'Mascota adoptada', icon: 'pi pi-heart', date: 'Jul 12', status: 'upcoming' }
   ];
 
   // Función para obtener las iniciales
@@ -104,4 +103,5 @@ export class PetAdoptionComponent {
     }
     return '';
   }
+  
 }
