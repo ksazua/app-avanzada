@@ -29,14 +29,14 @@ export class PetAdoptionComponent {
   petAdoptions: PetAdoption[] = [
     {
       id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      address: '123 Main St, Los Angeles, CA',
+      firstName: 'Kevin',
+      lastName: 'Azua',
+      email: 'kevinazua@example.com',
+      phone: '0992972224',
+      address: 'Bomboli, Santo Domingo, SD',
       status: 'completed',
       idDocumento: 'DOC123456',
-      cedula: '1234567890', // Ejemplo de cédula
+      cedula: '0925741548', // Ejemplo de cédula
       ocupacion: 'Developer' // Ejemplo de ocupación
     }
     // Puedes añadir más datos de adopciones según sea necesario
