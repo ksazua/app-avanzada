@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.component';
 
 import { InicioComponent } from './inicio/inicio.component';
+import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
 
 
 
@@ -35,6 +36,7 @@ import { InicioComponent } from './inicio/inicio.component';
     TablaUploadFileComponent,
 
     InicioComponent,
+      FormAdopcionComponent,
 
   ],
   imports: [
