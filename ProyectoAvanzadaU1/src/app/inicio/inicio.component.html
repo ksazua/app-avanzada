@@ -1,6 +1,8 @@
 <div class="full-screen-image">
   <img src="img/dog-2606759.jpg" alt="Imagen de fondo">
   <p class="centered-text">Adoptar es darle una segunda oportunidad y ganar un amigo fiel para toda la vida.</p>
-<button pButton type="button" label="Nuevo texto" icon="pi pi-check" (mouseover)="menu.toggle($event)" style="position: absolute; top: 10px; right: 10px;"></button>
-  <p-menu #menu [model]="items" [popup]="true" styleClass="custom-menu"></p-menu>
 </div>
+
+<p-menu class="custom-menu" [model]="items" [popup]="true" #menu appendTo="body"></p-menu>
+
+<button pButton type="button" label="Iniciar" (mouseover)="menu.toggle($event)" ></button>

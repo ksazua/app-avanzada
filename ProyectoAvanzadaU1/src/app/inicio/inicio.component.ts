@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-inicio',
@@ -8,10 +9,22 @@ import {MenuItem} from "primeng/api";
 })
 export class InicioComponent implements OnInit{
   items: MenuItem[]| undefined
+
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.items = [
-      {label: 'Usuario', icon: 'pi pi-fw pi-user'},
-      {label: 'Administrador', icon: 'pi pi-fw pi-cog'}
+      {
+        label: 'Iniciar',
+        items: [
+          {
+            label: 'Usuario',
+            icon: 'pi pi-fw pi-user',
+            command: () => { this.router.navigate(['/form-adopcion']); }
+          },
+          {label: 'Administrador', icon: 'pi pi-fw pi-cog'}
+        ]
+      }
     ];
   }
 
