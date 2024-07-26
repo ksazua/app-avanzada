@@ -26,6 +26,7 @@ import {MenuModule} from 'primeng/menu';
 import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
 import {ConfirmationService} from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -38,7 +39,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     UploadFileComponent,
     TablaUploadFileComponent,
     InicioComponent,
-    FormAdopcionComponent
+    FormAdopcionComponent,
+    LoginComponent
 
   ],
   imports: [
