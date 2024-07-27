@@ -31,7 +31,7 @@
                     <small *ngIf="lastNameField?.hasError('onlyLetters')">Solo se permiten letras</small>
                 </div>
                 <p>
-                    <label for="dni">Cédula o DNI: <label style="color: red;">*</label></label><br>
+                    <label for="dni">Cédula: <label style="color: red;">*</label></label><br>
                     <input type="text" formControlName="dni" class="form-control" inputmode="numeric" (keydown)="onDniKeyDown($event)">
                 </p>
                 <div *ngIf="dniField?.errors && dniField?.touched">

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 export function onlyLettersValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -55,7 +56,7 @@ export function adultAgeValidator(): ValidatorFn {
 export class FormAdopcionComponent {
   adoptionForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.buildForm();
 
   }
@@ -273,6 +274,7 @@ private updateCurrentPetsValidators(currentPets: string): void {
 
   onCancel(): void {
     this.adoptionForm.reset();
+    this.router.navigate(['/']);
   }
 
 
