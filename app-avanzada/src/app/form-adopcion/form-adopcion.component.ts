@@ -55,10 +55,15 @@ export function adultAgeValidator(): ValidatorFn {
 })
 export class FormAdopcionComponent {
   adoptionForm!: FormGroup;
+  showPassword: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.buildForm();
 
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   private buildForm(): void {
@@ -74,6 +79,7 @@ export class FormAdopcionComponent {
       phoneNumber: new FormControl('',[Validators.required,Validators.maxLength(10),Validators.minLength(10), onlyNumbersValidator(), noRepeatedDigitsValidator()]),
       phoneNumber2: [''],
       email: ['', [Validators.required, Validators.email]],
+      password: new FormControl('', [Validators.required]),
       familyMembers: ['', Validators.required],
       children: ['', Validators.required],
       numberOfChildren: [{ value: '', disabled: true }],

@@ -85,11 +85,8 @@
                     <small *ngIf="phoneNumberField?.hasError('onlyNumbers')"> Por favor, ingrese solo numeros</small>
                     <small *ngIf="phoneNumberField?.hasError('noRepeatedDigits')"> Por favor, no repita los numeros</small>
                 </div>
-                <p>
-                    <label style="margin-top: -4%;">Número de teléfono alternativo</label><br>
-                    <input type="text" formControlName="phoneNumber2" class="form-control" inputmode="numeric" (keydown)="onDniKeyDown($event)">
-                </p>
-                <p>
+                <label style="display: block; margin-bottom: 0.5%;">Registro de cuenta</label>
+                <p style="margin: 0; padding: 0;">
                     <label for="email" style="margin-top: 2%;">Correo electrónico: <label style="color: red;">*</label></label><br>
                     <input type="email" formControlName="email" placeholder="example@example.com" class="form-control">
                 </p>
@@ -97,6 +94,24 @@
                     <small *ngIf="adoptionForm.get('email')?.hasError('required')">Es un campo requerido</small>
                     <small *ngIf="adoptionForm.get('email')?.hasError('email')">Correo electrónico no válido</small>
                 </div>
+                <p>
+                    <label for="password" style="margin: 0; padding: 0;">Contraseña: <label style="color: red;">*</label></label><br>
+                  </p>
+                  <div style="position: relative;">
+                    <input
+                      [type]="showPassword ? 'text' : 'password'"
+                      formControlName="password"
+                      class="form-control"
+                      style="padding-right: 40px;">
+                    <span
+                      (click)="togglePasswordVisibility()"
+                      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                      {{ showPassword ? '🙈' : '👁️' }}
+                                  </span>
+                  </div>
+                  <div *ngIf="adoptionForm.get('password')?.errors && adoptionForm.get('password')?.touched">
+                    <small *ngIf="adoptionForm.get('password')?.hasError('required')">Es un campo requerido</small>
+                  </div>
             </fieldset>
             <fieldset>
                 <legend>Familia</legend>
