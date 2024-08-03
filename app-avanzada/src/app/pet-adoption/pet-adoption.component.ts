@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AdoptionService} from '../services/adoption.service';
-import {AuthService} from '../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { AdoptionService } from '../services/adoption.service';
+import { AuthService } from '../services/auth.service';
 
 interface PetAdoption {
   id: number;
@@ -10,10 +10,9 @@ interface PetAdoption {
   phone: string;
   address: string;
   status: string;
-  idDocumento: string;
+  postalCode: string;
   cedula: string;
   ocupacion: string;
-
 }
 
 interface Step {
@@ -22,7 +21,6 @@ interface Step {
   date: string;
   status: 'completed' | 'current' | 'hold' | 'upcoming';
 }
-
 
 @Component({
   selector: 'app-pet-adoption',
@@ -34,79 +32,82 @@ export class PetAdoptionComponent implements OnInit {
   user: any;
   form!: any;
 
-
-
   steps: Step[] = [
-    {label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed'},
+    { label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
   ];
 
   constructor(
     private adoptionService: AdoptionService,
     private authService: AuthService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadUserAdoptions();
   }
 
-
   loadUserAdoptions(): void {
     const email = localStorage.getItem('email');
 
-    this.authService.getCurrentUser(email!).subscribe(
-      (response) => {
-        this.form = response;
+    if (email) {
+      this.authService.getCurrentUser(email).subscribe(
+        (response) => {
+          this.form = response;
+          this.user = {
+            firstName: response.name,
+            lastName: response.lastName,
+            email: response.email,
+            phone: response.phoneNumber,
+            address: response.address,
+            idDocumento: response.dni,
+            postalCode: response.postalCode,
+            role: response.role || 'Cliente'
+          };
 
-        if (response.estadoValidacionFormulario == 'pending') {
-          this.steps.push(
-            {label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold'},
-          )
-        }
-        if (response.estadoValidacionFormulario == 'approved') {
-          this.steps.push(
-            {label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed'},
-          )
-        }
-        if (response.estadoValidacionFormulario == 'rejected') {
-          this.steps.push(
-            {label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'upcoming'},
-          )
-        }
-
-        if(response.estadoValidacionFormulario == 'approved') {
-          if (response.estadoValidacionPago == 'pending') {
+          if (response.estadoValidacionFormulario == 'pending') {
             this.steps.push(
-              {label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold'},
+              { label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold' },
             )
           }
-          if (response.estadoValidacionPago == 'approved') {
+          if (response.estadoValidacionFormulario == 'approved') {
             this.steps.push(
-              {label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed'},
+              { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed' },
             )
           }
-          if (response.estadoValidacionPago == 'rejected') {
+          if (response.estadoValidacionFormulario == 'rejected') {
             this.steps.push(
-              {label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'completed'},
+              { label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'upcoming' },
             )
           }
-        }
 
-      },
-      (error) => {
-        console.error('Error fetching user:', error);
-      }
-    );
+          if (response.estadoValidacionFormulario == 'approved') {
+            if (response.estadoValidacionPago == 'pending') {
+              this.steps.push(
+                { label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold' },
+              )
+            }
+            if (response.estadoValidacionPago == 'approved') {
+              this.steps.push(
+                { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed' },
+              )
+            }
+            if (response.estadoValidacionPago == 'rejected') {
+              this.steps.push(
+                { label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'completed' },
+              )
+            }
+          }
+        },
+        (error) => {
+          console.error('Error fetching user:', error);
+        }
+      );
+    }
   }
 
-  // Función para obtener las iniciales
   getInitials(firstName: string, lastName: string): string {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`;
   }
 
-
-
-  // Función para obtener la clase de paso
   getStepClass(step: Step): string {
     switch (step.status) {
       case 'completed':
@@ -122,7 +123,6 @@ export class PetAdoptionComponent implements OnInit {
     }
   }
 
-  // Función para obtener la clase de separador
   getSeparatorClass(index: number): string {
     if (index < this.steps.length - 1) {
       if (this.steps[index].status === 'completed' && this.steps[index + 1].status === 'completed') {

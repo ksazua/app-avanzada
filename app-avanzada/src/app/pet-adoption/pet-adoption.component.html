@@ -6,29 +6,26 @@
   <div class="flex items-center space-x-4">
     <!-- Imagen de perfil con iniciales -->
     <div class="relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg"
-           alt="User" class="w-10 h-10 rounded-full">
-      <div class="absolute bottom-0 right-0 bg-pink-500 text-white w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold">
-        KA <!-- Aquí puedes usar la función para obtener las iniciales si lo deseas -->
+      <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-xs font-bold text-white" style="background-color: #EC4899;">
+        {{ getInitials(user?.firstName, user?.lastName) }}
       </div>
     </div>
-    <!-- Botón de notificaciones (campana) -->
-    <button type="button" pButton icon="pi pi-bell" class="p-button p-button-icon-only"></button>
     <!-- Botón de cerrar sesión -->
     <button type="button" pButton icon="pi pi-sign-out" class="p-button p-button-icon-only" routerLink="/"></button>
   </div>
 </header>
-
 
 <!-- Contenedor Principal -->
 <div class="flex">
   <!-- Sidebar -->
   <aside class="w-1/5 bg-white p-4 text-sm">
     <div class="mb-4 text-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Enner_Valencia_%282020-21_S%C3%BCper_Lig%29_-_Resim1_%28cropped%29.jpg"
-        alt="User" class="w-12 h-12 rounded-full mx-auto">
-      <h2 class="mt-2 text-xs">Kevin Azua</h2>
-      <p class="text-gray-600 text-xs">Cliente</p>
+      <!-- Reemplazamos la imagen con un div que muestra las iniciales -->
+      <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold mx-auto">
+        {{ getInitials(user?.firstName, user?.lastName) }}
+      </div>
+      <h2 class="mt-2 text-xs">{{ user?.firstName }} {{ user?.lastName }}</h2>
+      <p class="text-gray-600 text-xs">{{ user?.role }}</p>
     </div>
     <nav>
       <ul>
@@ -91,7 +88,7 @@
               <div class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center rounded-md">
                 <i class="pi pi-book"></i>
               </div>
-              <span class="p-text text-sm">ID del Documento: {{ user.idDocumento }}</span>
+              <span class="p-text text-sm">Código Postal: {{ user.postalCode }}</span>
             </div>
           </div>
         </div>
@@ -152,7 +149,6 @@
             </tbody>
           </table>
         </div>
-
       </div>
     </div>
   </div>
