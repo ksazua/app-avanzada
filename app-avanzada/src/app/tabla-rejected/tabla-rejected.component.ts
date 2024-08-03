@@ -26,3 +26,4 @@ export class TablaRejectedComponent implements OnInit {
     );
   }
 }
+

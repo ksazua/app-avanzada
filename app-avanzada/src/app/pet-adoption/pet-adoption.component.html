@@ -30,8 +30,9 @@
     <nav>
       <ul>
         <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Dashboard</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer" routerLink="//form-adopcion">Formulario</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer" routerLink="//upload-file">Pago</li>
+        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer"
+            [ngClass]="{'opacity-50': !isPaymentEnabled()}"
+            (click)="handlePaymentNavigation()">Pago</li>
       </ul>
     </nav>
   </aside>
@@ -104,15 +105,17 @@
               <h3 class="font-bold text-gray-800 text-sm">Revisión iniciada</h3>
             </div>
           </div>
-          <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4 cursor-pointer"
-               routerLink="/upload-file">
-            <div class="bg-blue-100 text-blue-500 w-8 h-8 flex items-center justify-center rounded-md">
-              <i class="pi pi-money-bill"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-gray-800 text-sm">Enviar pago</h3>
-            </div>
-          </div>
+          <div class="w-1/2 p-4 bg-white shadow-md rounded-md flex items-center space-x-4"
+          [ngClass]="{'cursor-pointer': isPaymentEnabled(), 'opacity-50': !isPaymentEnabled()}"
+          [routerLink]="isPaymentEnabled() ? '/upload-file' : null"
+          (click)="handlePaymentClick()">
+       <div class="bg-blue-100 text-blue-500 w-8 h-8 flex items-center justify-center rounded-md">
+         <i class="pi pi-money-bill"></i>
+       </div>
+       <div>
+         <h3 class="font-bold text-gray-800 text-sm">Enviar pago</h3>
+       </div>
+     </div>
         </div>
 
         <!-- Tabla de mascotas -->

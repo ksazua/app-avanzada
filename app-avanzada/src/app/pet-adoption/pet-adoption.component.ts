@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdoptionService } from '../services/adoption.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 interface PetAdoption {
   id: number;
@@ -38,7 +39,8 @@ export class PetAdoptionComponent implements OnInit {
 
   constructor(
     private adoptionService: AdoptionService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -134,5 +136,23 @@ export class PetAdoptionComponent implements OnInit {
       }
     }
     return '';
+  }
+  isPaymentEnabled(): boolean {
+    return this.form?.estadoValidacionFormulario === 'approved';
+  }
+
+  handlePaymentClick(): void {
+    if (!this.isPaymentEnabled()) {
+      // Puedes mostrar un mensaje al usuario explicando por qué no puede acceder al pago
+      console.log('El pago no está disponible en este momento.');
+      // Opcionalmente, puedes usar un servicio de notificación o un modal para informar al usuario
+    }
+  }
+  handlePaymentNavigation(): void {
+    if (this.isPaymentEnabled()) {
+      this.router.navigate(['/upload-file']);
+    } else {
+      alert("Su pago no está disponible, su solicitud está en revisión.");
+    }
   }
 }
