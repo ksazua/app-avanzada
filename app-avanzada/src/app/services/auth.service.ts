@@ -13,4 +13,17 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}`, credentials);
   }
+
+  getCurrentUserId(): string | null {
+    return localStorage.getItem('userId');
+  }
+
+  getCurrentUser(): Observable<any> {
+    const userId = this.getCurrentUserId();
+    if (userId) {
+      return this.http.get<any>(`http://localhost:3000/api/users/${userId}`);
+    } else {
+      throw new Error('User not logged in');
+    }
+  }
 }

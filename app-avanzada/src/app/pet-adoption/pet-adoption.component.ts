@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdoptionService } from '../services/adoption.service';
+import { AuthService } from '../services/auth.service';
 
 interface PetAdoption {
   id: number;
@@ -9,8 +11,8 @@ interface PetAdoption {
   address: string;
   status: string;
   idDocumento: string;
-  cedula: string; // Cédula
-  ocupacion: string; // Ocupación
+  cedula: string;
+  ocupacion: string;
 }
 
 interface Step {
@@ -25,26 +27,9 @@ interface Step {
   templateUrl: './pet-adoption.component.html',
   styleUrls: ['./pet-adoption.component.css'],
 })
-export class PetAdoptionComponent {
-  petAdoptions: PetAdoption[] = [
-    {
-      id: 1,
-      firstName: 'Kevin',
-      lastName: 'Azua',
-      email: 'kevinazua@example.com',
-      phone: '0992972224',
-      address: 'Bomboli, Santo Domingo, SD',
-      status: 'completed',
-      idDocumento: 'DOC123456',
-      cedula: '0925741548', // Ejemplo de cédula
-      ocupacion: 'Developer' // Ejemplo de ocupación
-    }
-    // Puedes añadir más datos de adopciones según sea necesario
-  ];
-
-  get user() {
-    return this.petAdoptions.find(petAdoption => petAdoption.id === 1);
-  }
+export class PetAdoptionComponent implements OnInit {
+  petAdoptions: PetAdoption[] = [];
+  user: any;
 
   steps: Step[] = [
     { label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
@@ -54,6 +39,37 @@ export class PetAdoptionComponent {
     { label: 'Entrevista', icon: 'pi pi-comment', date: 'Jul 12', status: 'upcoming' },
     { label: 'Mascota adoptada', icon: 'pi pi-heart', date: 'Jul 12', status: 'upcoming' }
   ];
+
+  constructor(
+    private adoptionService: AdoptionService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadUserAdoptions();
+  }
+
+  loadUserAdoptions(): void {
+    this.authService.getCurrentUser().subscribe(
+      (currentUser) => {
+        const userId = currentUser.id;
+        this.adoptionService.getPetAdoptions(userId).subscribe(
+          (petAdoptions: PetAdoption[]) => {
+            this.petAdoptions = petAdoptions;
+            if (this.petAdoptions.length > 0) {
+              this.user = this.petAdoptions[0];
+            }
+          },
+          (error) => {
+            console.error('Error fetching pet adoptions:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Error fetching user:', error);
+      }
+    );
+  }
 
   // Función para obtener las iniciales
   getInitials(firstName: string, lastName: string): string {
@@ -103,5 +119,4 @@ export class PetAdoptionComponent {
     }
     return '';
   }
-
 }
