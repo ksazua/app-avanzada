@@ -1,5 +1,8 @@
-// login.component.ts
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +10,43 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  onSubmit() {
-    // Manejar el envío del formulario
-    alert('Login button clicked');
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe(
+        response => {
+          if (response.role === 'admin') {
+            this.router.navigate(['/tabla-valida-formulario']); // Redirige al dashboard de admin
+          } else if (response.role === 'client') {
+            this.router.navigate(['/pet-adoption']); // Redirige al dashboard de cliente
+          }
+        },
+        error => {
+          Swal.fire({
+            title: 'Error',
+            text: 'Credenciales incorrectas. Por favor, intente de nuevo.',
+            icon: 'error'
+          });
+        }
+      );
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
+  }
+
+  get emailField() {
+    return this.loginForm.get('email');
+  }
+
+  get passwordField() {
+    return this.loginForm.get('password');
   }
 }
