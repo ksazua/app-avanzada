@@ -1,125 +1,55 @@
-import { Component } from '@angular/core';
-import Swal from "sweetalert2";
-interface PetAdoption {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  address: string;
-  status: string;
-}
+import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+import { FormularioService, Form } from '../services/formulario.service';
+import { AdminService, User } from '../services/admin.service';
 
-interface Event {
-  status: string;
-  date: Date;
-  icon: string;
-  color: string;
-}
 @Component({
   selector: 'app-tabla-valida-formulario',
   templateUrl: './tabla-valida-formulario.component.html',
-  styleUrl: './tabla-valida-formulario.component.css'
+  styleUrls: ['./tabla-valida-formulario.component.css']
 })
-export class TablaValidaFormularioComponent {
+export class TablaValidaFormularioComponent implements OnInit {
 
-  petAdoptions: PetAdoption[] = [
-    {
-      id: 1,
-      firstName: 'Kevin',
-      lastName: 'Azua',
-      email: 'kevinazua@example.com',
-      phone: '0992972223',
-      address: 'Bomboli, Santo Domingo, SD',
-      status: 'completed'
-    },
-    {
-      id: 2,
-      firstName: 'Josue',
-      lastName: 'Espinoza',
-      email: 'josueespinoza@example.com',
-      phone: '0992992223',
-      address: 'Vergeles, Guayaquil, GYE',
-      status: 'completed'
-    },
-    {
-      id: 3,
-      firstName: 'Fabricio',
-      lastName: 'Alama',
-      email: 'fabalama@example.com',
-      phone: '0992873334',
-      address: 'Calle 15 Av 17, Manta, MEC',
-      status: 'completed'
-    },
-    {
-      id: 4,
-      firstName: 'Fernando',
-      lastName: 'Vivanco',
-      email: 'frvivanc@example.com',
-      phone: '0993872224',
-      address: 'Calle 18 Av 19, Manta, MEC',
-      status: 'completed'
-    },
-    {
-      id: 5,
-      firstName: 'Steven',
-      lastName: 'Stopper',
-      email: 'stevenstop@example.com',
-      phone: '0993873224',
-      address: '127 Main St, Los Angeles, CA',
-      status: 'completed'
-    },
-    {
-      id: 6,
-      firstName: 'Jack',
-      lastName: 'Doe',
-      email: 'jack.doe@example.com',
-      phone: '0985873224',
-      address: '128 Main St, Los Angeles, CA',
-      status: 'completed'
-    },
-    {
-      id: 7,
-      firstName: 'James',
-      lastName: 'Doe',
-      email: 'james.doe@example.com',
-      phone: '0998654572',
-      address: '129 Main St, Los Angeles, CA',
-      status: 'completed'
-    }
+  forms: Form[] = [];
+  searchTerm: string = '';
+  pageSize: number = 5;
+  currentPage: number = 1;
+  originalForms: Form[] = [];
+  user: User | null = null;
+  userPassword: string = 'admin123'; // Contraseña correcta del administrador
 
-  ];
+  constructor(private formularioService: FormularioService, private adminService: AdminService) { }
 
-
-
-  // Define la propiedad progressWidth y su lógica de cálculo
-  get progressWidth(): string {
-    // Aquí puedes definir la lógica para calcular el ancho de la barra de progreso
-    // Por ejemplo, puedes calcularlo en base a la cantidad de adopciones completadas
-    const completedCount = this.petAdoptions.filter(adoption => adoption.status === 'completed').length;
-    return `${(completedCount / this.petAdoptions.length) * 100}%`;
+  ngOnInit(): void {
+    this.fetchForms();
+    this.fetchUser(); // Fetch user information
   }
 
-  // Función para obtener las iniciales
-  getInitials(firstName: string, lastName: string): string {
-    return `${firstName.charAt(0)}${lastName.charAt(0)}`;
+  fetchForms(): void {
+    this.formularioService.getFormsSummary().subscribe(
+      forms => {
+        this.forms = forms;
+        this.originalForms = forms;
+      },
+      error => {
+        console.error('Error fetching forms:', error);
+      }
+    );
   }
 
-  // Función para obtener la clase de estado
-  getStatusClass(status: string): string {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-200';
-      case 'pending':
-        return 'bg-yellow-200';
-      case 'hold':
-        return 'bg-red-200';
-      default:
-        return '';
-    }
+  fetchUser(): void {
+    const userId = 'GONN8RR5Ki6GdXzDS8Ym'; // ID correcto del administrador
+    this.adminService.getLoggedInUser(userId, this.userPassword).subscribe(
+      user => {
+        this.user = user;
+      },
+      error => {
+        console.error('Error fetching user:', error);
+      }
+    );
   }
 
-  aceptar(id: number) {
+  approveForm(id: string): void {
     Swal.fire({
       title: '¿Estás seguro de que deseas aprobar?',
       text: "No podrás revertir esto!",
@@ -130,18 +60,21 @@ export class TablaValidaFormularioComponent {
       confirmButtonText: 'Sí, apruébalo!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Aprobado!',
-          'La adopción ha sido aprobada.',
-          'success'
-        )
-        console.log(`Adopción con ID ${id} aprobada.`);
-        // Aquí puedes agregar la lógica para manejar la aprobación
+        this.formularioService.approveForm(id).subscribe(
+          () => {
+            Swal.fire('Aprobado!', 'La adopción ha sido aprobada.', 'success');
+            this.fetchForms(); // Refresh the forms list
+          },
+          error => {
+            console.error('Error approving form:', error);
+            Swal.fire('Error', 'Hubo un error al aprobar el formulario.', 'error');
+          }
+        );
       }
     });
   }
 
-  rechazar(id: number) {
+  rejectForm(id: string): void {
     Swal.fire({
       title: '¿Estás seguro de que deseas rechazar?',
       text: "No podrás revertir esto!",
@@ -152,49 +85,43 @@ export class TablaValidaFormularioComponent {
       confirmButtonText: 'Sí, recházalo!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Rechazado!',
-          'La adopción ha sido rechazada.',
-          'success'
-        )
-        console.log(`Adopción con ID ${id} rechazada.`);
-        // Aquí puedes agregar la lógica para manejar el rechazo
+        this.formularioService.rejectForm(id).subscribe(
+          () => {
+            Swal.fire('Rechazado!', 'La adopción ha sido rechazada.', 'success');
+            this.fetchForms(); // Refresh the forms list
+          },
+          error => {
+            console.error('Error rejecting form:', error);
+            Swal.fire('Error', 'Hubo un error al rechazar el formulario.', 'error');
+          }
+        );
       }
     });
   }
 
-
-
-  //metodos para numerar tabla
-  pageSize = 5;
-  currentPage = 1;
-
-  changePage(page: number) {
+  changePage(page: number): void {
     this.currentPage = page;
   }
 
-  changePageSize(size: number) {
+  changePageSize(size: number): void {
     this.pageSize = size;
-    this.currentPage = 1; // Volver a la primera página
+    this.currentPage = 1; // Reset to first page
   }
-  get currentRecords() {
+
+  get currentRecords(): Form[] {
     const start = (this.currentPage - 1) * this.pageSize;
     const end = start + this.pageSize;
-    return this.petAdoptions.slice(start, end);
+    return this.forms.slice(start, end);
+  }
+
+  search(): void {
+    this.forms = this.originalForms.filter(form =>
+      form.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      form.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      form.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      form.dni.toLowerCase().includes(this.searchTerm.toLowerCase())
+  );
   }
 
   protected readonly Math = Math;
-
-  originalPetAdoptions = [...this.petAdoptions];
-  //metodos para buscar
-  searchTerm = '';
-
-  search() {
-    this.petAdoptions = this.originalPetAdoptions.filter(adoption =>
-      adoption.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      adoption.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      adoption.email.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-  }
-
 }
