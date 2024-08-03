@@ -23,9 +23,21 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         response => {
+          if (response) {
+            localStorage.setItem('email', response.email);
+            localStorage.setItem('role', response.role);
+          }else{
+            Swal.fire({
+              title: 'Error',
+              text: 'Credenciales incorrectas. Por favor, intente de nuevo.',
+              icon: 'error'
+            });
+          }
           if (response.role === 'admin') {
+            localStorage.setItem('userId', response.id); // Almacena el userId en el localStorage
             this.router.navigate(['/tabla-valida-formulario']); // Redirige al dashboard de admin
           } else if (response.role === 'client') {
+            localStorage.setItem('userId', response.id); // Almacena el userId en el localStorage
             this.router.navigate(['/pet-adoption']); // Redirige al dashboard de cliente
           }
         },

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,25 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(credentials: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, credentials);
+    return this.http.post<any>(`${this.apiUrl}`, credentials).pipe(
+      catchError(error => {
+        console.error('Login error:', error);
+        return of(null); // Devuelve null en caso de error
+      })
+    );
   }
 
-  getCurrentUserId(): string | null {
-    return localStorage.getItem('userId');
-  }
-
-  getCurrentUser(): Observable<any> {
-    const userId = this.getCurrentUserId();
-    if (userId) {
-      return this.http.get<any>(`http://localhost:3000/api/users/${userId}`);
+  getCurrentUser(email: string): Observable<any> {
+    if (email) {
+      return this.http.post<any>(`http://localhost:3000/api/loginById`, {email:email}).pipe(
+        catchError(error => {
+          console.error('Error fetching user:', error);
+          return of(null); // Devuelve null en caso de error
+        })
+      );
     } else {
-      throw new Error('User not logged in');
+      console.error('User not logged in');
+      return of(null); // Devuelve null si no hay userId en el localStorage
     }
   }
 }

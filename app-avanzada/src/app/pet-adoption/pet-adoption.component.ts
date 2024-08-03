@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AdoptionService } from '../services/adoption.service';
-import { AuthService } from '../services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {AdoptionService} from '../services/adoption.service';
+import {AuthService} from '../services/auth.service';
 
 interface PetAdoption {
   id: number;
@@ -13,6 +13,7 @@ interface PetAdoption {
   idDocumento: string;
   cedula: string;
   ocupacion: string;
+
 }
 
 interface Step {
@@ -22,6 +23,7 @@ interface Step {
   status: 'completed' | 'current' | 'hold' | 'upcoming';
 }
 
+
 @Component({
   selector: 'app-pet-adoption',
   templateUrl: './pet-adoption.component.html',
@@ -30,40 +32,66 @@ interface Step {
 export class PetAdoptionComponent implements OnInit {
   petAdoptions: PetAdoption[] = [];
   user: any;
+  form!: any;
+
+
 
   steps: Step[] = [
-    { label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
-    { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'hold' },
-    { label: 'Enviar pago', icon: 'pi pi-send', date: 'Jul 12', status: 'upcoming' },
-    { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'upcoming' },
-    { label: 'Entrevista', icon: 'pi pi-comment', date: 'Jul 12', status: 'upcoming' },
-    { label: 'Mascota adoptada', icon: 'pi pi-heart', date: 'Jul 12', status: 'upcoming' }
+    {label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed'},
   ];
 
   constructor(
     private adoptionService: AdoptionService,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadUserAdoptions();
   }
 
+
   loadUserAdoptions(): void {
-    this.authService.getCurrentUser().subscribe(
-      (currentUser) => {
-        const userId = currentUser.id;
-        this.adoptionService.getPetAdoptions(userId).subscribe(
-          (petAdoptions: PetAdoption[]) => {
-            this.petAdoptions = petAdoptions;
-            if (this.petAdoptions.length > 0) {
-              this.user = this.petAdoptions[0];
-            }
-          },
-          (error) => {
-            console.error('Error fetching pet adoptions:', error);
+    const email = localStorage.getItem('email');
+
+    this.authService.getCurrentUser(email!).subscribe(
+      (response) => {
+        this.form = response;
+
+        if (response.estadoValidacionFormulario == 'pending') {
+          this.steps.push(
+            {label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold'},
+          )
+        }
+        if (response.estadoValidacionFormulario == 'approved') {
+          this.steps.push(
+            {label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed'},
+          )
+        }
+        if (response.estadoValidacionFormulario == 'rejected') {
+          this.steps.push(
+            {label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'upcoming'},
+          )
+        }
+
+        if(response.estadoValidacionFormulario == 'approved') {
+          if (response.estadoValidacionPago == 'pending') {
+            this.steps.push(
+              {label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold'},
+            )
           }
-        );
+          if (response.estadoValidacionPago == 'approved') {
+            this.steps.push(
+              {label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed'},
+            )
+          }
+          if (response.estadoValidacionPago == 'rejected') {
+            this.steps.push(
+              {label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'completed'},
+            )
+          }
+        }
+
       },
       (error) => {
         console.error('Error fetching user:', error);
@@ -76,19 +104,7 @@ export class PetAdoptionComponent implements OnInit {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`;
   }
 
-  // Función para obtener la clase de estado
-  getStatusClass(status: string): string {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-200';
-      case 'pending':
-        return 'bg-yellow-200';
-      case 'hold':
-        return 'bg-red-200';
-      default:
-        return '';
-    }
-  }
+
 
   // Función para obtener la clase de paso
   getStepClass(step: Step): string {
