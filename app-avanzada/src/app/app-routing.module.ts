@@ -10,6 +10,7 @@ import { TablaUploadFileComponent } from './tabla-upload-file/tabla-upload-file.
 import {InicioComponent} from "./inicio/inicio.component";
 import { FormAdopcionComponent } from './form-adopcion/form-adopcion.component';
 import { LoginComponent } from './login/login.component';
+import {TablaRejectedComponent} from "./tabla-rejected/tabla-rejected.component";
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'tabla-validacion-comprobante', component: TablaValidacionComprobanteComponent },
   { path: 'tabla-valida-formulario', component: TablaValidaFormularioComponent},
   { path: 'upload-file', component: TablaUploadFileComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'tabla-rejected', component: TablaRejectedComponent }
 ];
 
 @NgModule({

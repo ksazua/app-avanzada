@@ -11,23 +11,23 @@ export interface Form {
   phoneNumber: string;
   address: string;
   estadoValidacionFormulario: string;
+  // Add other form fields as needed
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormularioService {
-
   private apiUrl = 'http://localhost:3000/api/forms';
 
   constructor(private http: HttpClient) { }
 
-  getAllForms(): Observable<Form[]> {
-    return this.http.get<Form[]>(this.apiUrl);
-  }
-
   getFormsSummary(): Observable<Form[]> {
     return this.http.get<Form[]>(`${this.apiUrl}/summary`);
+  }
+
+  getRejectedForms(): Observable<Form[]> {
+    return this.http.get<Form[]>(`${this.apiUrl}/rejected`);
   }
 
   approveForm(id: string): Observable<any> {

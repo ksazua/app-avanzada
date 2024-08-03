@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormularioService, Form } from '../services/formulario.service';
 import { AdminService, User } from '../services/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabla-valida-formulario',
@@ -9,7 +10,6 @@ import { AdminService, User } from '../services/admin.service';
   styleUrls: ['./tabla-valida-formulario.component.css']
 })
 export class TablaValidaFormularioComponent implements OnInit {
-
   forms: Form[] = [];
   searchTerm: string = '';
   pageSize: number = 5;
@@ -18,11 +18,11 @@ export class TablaValidaFormularioComponent implements OnInit {
   user: User | null = null;
   userPassword: string = 'admin123'; // Contraseña correcta del administrador
 
-  constructor(private formularioService: FormularioService, private adminService: AdminService) { }
+  constructor(private formularioService: FormularioService, private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchForms();
-    this.fetchUser(); // Fetch user information
+    this.fetchUser();
   }
 
   fetchForms(): void {
@@ -38,7 +38,7 @@ export class TablaValidaFormularioComponent implements OnInit {
   }
 
   fetchUser(): void {
-    const userId = 'GONN8RR5Ki6GdXzDS8Ym'; // ID correcto del administrador
+    const userId = 'VRaeh4ufdmbpHF5ieBMU'; // ID correcto del administrador
     this.adminService.getLoggedInUser(userId, this.userPassword).subscribe(
       user => {
         this.user = user;
@@ -63,7 +63,7 @@ export class TablaValidaFormularioComponent implements OnInit {
         this.formularioService.approveForm(id).subscribe(
           () => {
             Swal.fire('Aprobado!', 'La adopción ha sido aprobada.', 'success');
-            this.fetchForms(); // Refresh the forms list
+            this.removeFormFromList(id); // Elimina el formulario aprobado de la lista
           },
           error => {
             console.error('Error approving form:', error);
@@ -88,7 +88,7 @@ export class TablaValidaFormularioComponent implements OnInit {
         this.formularioService.rejectForm(id).subscribe(
           () => {
             Swal.fire('Rechazado!', 'La adopción ha sido rechazada.', 'success');
-            this.fetchForms(); // Refresh the forms list
+            this.removeFormFromList(id); // Elimina el formulario rechazado de la lista
           },
           error => {
             console.error('Error rejecting form:', error);
@@ -118,10 +118,14 @@ export class TablaValidaFormularioComponent implements OnInit {
     this.forms = this.originalForms.filter(form =>
       form.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       form.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      form.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      form.dni.toLowerCase().includes(this.searchTerm.toLowerCase())
-  );
+      form.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   protected readonly Math = Math;
+
+  private removeFormFromList(id: string): void {
+    this.forms = this.forms.filter(form => form.id !== id);
+    this.originalForms = this.originalForms.filter(form => form.id !== id);
+  }
 }
