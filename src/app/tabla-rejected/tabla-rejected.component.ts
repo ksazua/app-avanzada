@@ -16,9 +16,9 @@ export class TablaRejectedComponent implements OnInit {
   }
 
   fetchRejectedForms(): void {
-    this.formularioService.getRejectedForms().subscribe(
-      forms => {
-        this.forms = forms;
+    this.formularioService.getFormsAll().subscribe(
+      response => {
+        this.forms = response.filter(form => form.estadoValidacionFormulario === 'rejected');
       },
       error => {
         console.error('Error fetching rejected forms:', error);

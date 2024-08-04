@@ -19,13 +19,13 @@ const routes: Routes = [
   { path: 'pet-adoption', component: PetAdoptionComponent },
   { path: 'tabla-validacion-comprobante', component: TablaValidacionComprobanteComponent },
   { path: 'tabla-valida-formulario', component: TablaValidaFormularioComponent},
-  { path: 'upload-file', component: TablaUploadFileComponent },
+  { path: 'upload-file/:id', component: TablaUploadFileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'tabla-rejected', component: TablaRejectedComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{bindToComponentInputs: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

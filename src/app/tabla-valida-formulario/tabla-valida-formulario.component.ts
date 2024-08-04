@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import Swal from 'sweetalert2';
-import { FormularioService, Form } from '../services/formulario.service';
-import { AdminService, User } from '../services/admin.service';
-import { Router } from '@angular/router';
+import {FormularioService, Form} from '../services/formulario.service';
+import {AdminService, User} from '../services/admin.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tabla-valida-formulario',
@@ -18,7 +18,14 @@ export class TablaValidaFormularioComponent implements OnInit {
   user: User | null = null;
   userPassword: string = 'admin123'; // Contraseña correcta del administrador
 
-  constructor(private formularioService: FormularioService, private adminService: AdminService, private router: Router) { }
+
+  constructor(private formularioService: FormularioService, private adminService: AdminService, private router: Router) {
+    this.user = {
+      name: localStorage.getItem('name')!,
+      email: localStorage.getItem('email')!,
+      role: localStorage.getItem('role')!,
+    };
+  }
 
   ngOnInit(): void {
     this.fetchForms();
@@ -26,10 +33,10 @@ export class TablaValidaFormularioComponent implements OnInit {
   }
 
   fetchForms(): void {
-    this.formularioService.getFormsSummary().subscribe(
-      forms => {
-        this.forms = forms;
-        this.originalForms = forms;
+    this.formularioService.getFormsAll().subscribe(
+      response => {
+        this.forms = response.filter(form => form.estadoValidacionFormulario === 'pending');
+        this.originalForms = response;
       },
       error => {
         console.error('Error fetching forms:', error);

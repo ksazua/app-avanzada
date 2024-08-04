@@ -26,6 +26,8 @@ export class LoginComponent {
           if (response) {
             localStorage.setItem('email', response.email);
             localStorage.setItem('role', response.role);
+            localStorage.setItem('name', response.name);
+            localStorage.setItem('userId', response.id);
           }else{
             Swal.fire({
               title: 'Error',
@@ -34,10 +36,8 @@ export class LoginComponent {
             });
           }
           if (response.role === 'admin') {
-            localStorage.setItem('userId', response.id); // Almacena el userId en el localStorage
             this.router.navigate(['/tabla-valida-formulario']); // Redirige al dashboard de admin
           } else if (response.role === 'client') {
-            localStorage.setItem('userId', response.id); // Almacena el userId en el localStorage
             this.router.navigate(['/pet-adoption']); // Redirige al dashboard de cliente
           }
         },

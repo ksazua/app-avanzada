@@ -34,7 +34,7 @@
       <ul>
         <li class="py-2 px-4 bg-pink-500 text-white rounded-md my-2 cursor-pointer">Validación de comprobante</li>
         <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer" routerLink="/tabla-valida-formulario">Validación de formulario</li>
-        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer" routerLink="/tabla-validacion-comprobante">Solicitudes rechazadas</li>
+        <li class="py-2 px-4 rounded-md my-2 hover:bg-gray-200 cursor-pointer" routerLink="/tabla-rejected">Solicitudes rechazadas</li>
       </ul>
     </nav>
   </aside>
@@ -74,19 +74,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let adoption of currentRecords" class="text-center border-b">
+          <tr *ngFor="let adoption of forms" class="text-center border-b">
             <td class="py-2 px-4 text-14">{{ adoption.id }}</td>
             <td class="py-2 px-4 text-14">
               <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                {{ getInitials(adoption.firstName, adoption.lastName) }}
+                {{ getInitials(adoption.name, adoption.lastName) }}
               </div>
             </td>
-            <td class="py-2 px-4 text-14">{{ adoption.firstName }} {{ adoption.lastName }}</td>
+            <td class="py-2 px-4 text-14">{{ adoption.name }} {{ adoption.lastName }}</td>
             <td class="py-2 px-4 text-14">{{ adoption.email }}</td>
-            <td class="py-2 px-4 text-14">{{ adoption.phone }}</td>
+            <td class="py-2 px-4 text-14">{{ adoption.phoneNumber }}</td>
             <td class="py-2 px-4 text-14">{{ adoption.address }}</td>
             <td class="py-2 px-4 text-14">
-              <p-button (click)="verComprobante(adoption.receiptImagePath)">
+              <p-button (click)="verComprobante(adoption.urlPayment)">
                 <i class="pi pi-eye"></i>
               </p-button>
             </td>

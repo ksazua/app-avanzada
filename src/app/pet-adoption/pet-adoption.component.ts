@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AdoptionService } from '../services/adoption.service';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AdoptionService} from '../services/adoption.service';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 import Swal from 'sweetalert2'; // Importa Swal
 
 // Definición de la interfaz PetAdoption para tipar los datos de adopción de mascotas
@@ -40,7 +40,7 @@ export class PetAdoptionComponent implements OnInit {
 
   // Pasos del proceso de adopción
   steps: Step[] = [
-    { label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed' },
+    {label: 'Solicitud', icon: 'pi pi-file', date: 'Jul 12', status: 'completed'},
   ];
 
   // Constructor del componente con inyección de dependencias
@@ -48,7 +48,8 @@ export class PetAdoptionComponent implements OnInit {
     private adoptionService: AdoptionService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   // Método que se ejecuta al inicializar el componente
   ngOnInit(): void {
@@ -78,24 +79,24 @@ export class PetAdoptionComponent implements OnInit {
             houseType: response.houseType,
             financialAbility: response.financialAbility,
             occupation: response.occupation,
-            previousPets : response.previousPets,
+            previousPets: response.previousPets,
             estadoValidacionFormulario: response.estadoValidacionFormulario
           };
 
           // Actualiza los pasos del proceso según el estado de validación del formulario
           if (response.estadoValidacionFormulario == 'pending') {
             this.steps.push(
-              { label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold' },
+              {label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold'},
             )
           }
           if (response.estadoValidacionFormulario == 'approved') {
             this.steps.push(
-              { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed' },
+              {label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed'},
             )
           }
           if (response.estadoValidacionFormulario == 'rejected') {
             this.steps.push(
-              { label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'upcoming' },
+              {label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'upcoming'},
             )
           }
 
@@ -103,17 +104,17 @@ export class PetAdoptionComponent implements OnInit {
           if (response.estadoValidacionFormulario == 'approved') {
             if (response.estadoValidacionPago == 'pending') {
               this.steps.push(
-                { label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold' },
+                {label: 'Pendiente', icon: 'pi pi-check', date: 'Jul 12', status: 'hold'},
               )
             }
             if (response.estadoValidacionPago == 'approved') {
               this.steps.push(
-                { label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed' },
+                {label: 'Aprobado', icon: 'pi pi-check', date: 'Jul 12', status: 'completed'},
               )
             }
             if (response.estadoValidacionPago == 'rejected') {
               this.steps.push(
-                { label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'completed' },
+                {label: 'Rechazado', icon: 'pi pi-ban', date: 'Jul 12', status: 'completed'},
               )
             }
           }
@@ -174,13 +175,15 @@ export class PetAdoptionComponent implements OnInit {
         text: 'Su pago no está disponible en este momento.',
         confirmButtonText: 'Aceptar'
       });
+    } else {
+      this.router.navigate(['/upload-file', this.form.id]);
     }
   }
 
   // Navega a la página de carga de archivos si el pago está habilitado
   handlePaymentNavigation(): void {
     if (this.isPaymentEnabled()) {
-      this.router.navigate(['/upload-file']);
+      this.router.navigate(['/upload-file', this.form.id]);
     } else {
       Swal.fire({
         icon: 'info',

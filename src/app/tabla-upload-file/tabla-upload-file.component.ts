@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { AuthService } from '../services/auth.service'; // Asegúrate de ajustar la ruta si es necesario
+import {Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
+import {AuthService} from '../services/auth.service'; // Asegúrate de ajustar la ruta si es necesario
 
 @Component({
   selector: 'app-tabla-upload-file',
@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service'; // Asegúrate de ajustar
   styleUrls: ['./tabla-upload-file.component.css']
 })
 export class TablaUploadFileComponent implements OnInit {
+  @Input() id!: string;
   receiptImagePath: string = '';
   displayModal: boolean = false;
   user: any;
@@ -14,7 +15,8 @@ export class TablaUploadFileComponent implements OnInit {
   constructor(
     private cd: ChangeDetectorRef,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadUserInfo();

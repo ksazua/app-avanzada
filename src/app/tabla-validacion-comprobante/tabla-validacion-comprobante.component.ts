@@ -1,6 +1,7 @@
-import {Component, ChangeDetectorRef, ViewEncapsulation} from '@angular/core';
+import {Component, ChangeDetectorRef, ViewEncapsulation, inject} from '@angular/core';
 import {ConfirmationService} from "primeng/api";
 import Swal from "sweetalert2";
+import {Form, FormularioService} from "../services/formulario.service";
 
 interface PetAdoption {
   id: number;
@@ -26,85 +27,97 @@ interface Event {
   styleUrl: './tabla-validacion-comprobante.component.css',
 
 })
-export class TablaValidacionComprobanteComponent  {
+export class TablaValidacionComprobanteComponent {
+  private readonly formularioService = inject(FormularioService);
+  protected forms: Form[] = [];
 
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef) {
+    this.fetchForms();
+  }
 
   petAdoptions: PetAdoption[] = [
-  {
-    id: 1,
-    firstName: 'Kevin',
-    lastName: 'Azua',
-    email: 'kevinazua@example.com',
-    phone: '0992972223',
-    address: 'Bomboli, Santo Domingo, SD',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante2.jpg'
-  },
-  {
-    id: 2,
-    firstName: 'Josue',
-    lastName: 'Espinoza',
-    email: 'josueespinoza@example.com',
-    phone: '0992992223',
-    address: 'Vergeles, Guayaquil, GYE',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante1.jpg'
-  },
-  {
-    id: 3,
-    firstName: 'Fabricio',
-    lastName: 'Alama',
-    email: 'fabalama@example.com',
-    phone: '0992873334',
-    address: 'Calle 15 Av 17, Manta, MEC',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante3.jpg'
-  },
-  {
-    id: 4,
-    firstName: 'Fernando',
-    lastName: 'Vivanco',
-    email: 'frvivanc@example.com',
-    phone: '0993872224',
-    address: 'Calle 18 Av 19, Manta, MEC',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante4.jpg'
-  },
-  {
-    id: 5,
-    firstName: 'Steven',
-    lastName: 'Stopper',
-    email: 'stevenstop@example.com',
-    phone: '0993873224',
-    address: '127 Main St, Los Angeles, CA',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante5.jpg'
-  },
-  {
-    id: 6,
-    firstName: 'Jack',
-    lastName: 'Doe',
-    email: 'jack.doe@example.com',
-    phone: '0985873224',
-    address: '128 Main St, Los Angeles, CA',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante6.jpg'
-  },
-  {
-    id: 7,
-    firstName: 'James',
-    lastName: 'Doe',
-    email: 'james.doe@example.com',
-    phone: '0998654572',
-    address: '129 Main St, Los Angeles, CA',
-    status: 'completed',
-    receiptImagePath: 'img/comprobante7.jpg'
+    {
+      id: 1,
+      firstName: 'Kevin',
+      lastName: 'Azua',
+      email: 'kevinazua@example.com',
+      phone: '0992972223',
+      address: 'Bomboli, Santo Domingo, SD',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante2.jpg'
+    },
+    {
+      id: 2,
+      firstName: 'Josue',
+      lastName: 'Espinoza',
+      email: 'josueespinoza@example.com',
+      phone: '0992992223',
+      address: 'Vergeles, Guayaquil, GYE',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante1.jpg'
+    },
+    {
+      id: 3,
+      firstName: 'Fabricio',
+      lastName: 'Alama',
+      email: 'fabalama@example.com',
+      phone: '0992873334',
+      address: 'Calle 15 Av 17, Manta, MEC',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante3.jpg'
+    },
+    {
+      id: 4,
+      firstName: 'Fernando',
+      lastName: 'Vivanco',
+      email: 'frvivanc@example.com',
+      phone: '0993872224',
+      address: 'Calle 18 Av 19, Manta, MEC',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante4.jpg'
+    },
+    {
+      id: 5,
+      firstName: 'Steven',
+      lastName: 'Stopper',
+      email: 'stevenstop@example.com',
+      phone: '0993873224',
+      address: '127 Main St, Los Angeles, CA',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante5.jpg'
+    },
+    {
+      id: 6,
+      firstName: 'Jack',
+      lastName: 'Doe',
+      email: 'jack.doe@example.com',
+      phone: '0985873224',
+      address: '128 Main St, Los Angeles, CA',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante6.jpg'
+    },
+    {
+      id: 7,
+      firstName: 'James',
+      lastName: 'Doe',
+      email: 'james.doe@example.com',
+      phone: '0998654572',
+      address: '129 Main St, Los Angeles, CA',
+      status: 'completed',
+      receiptImagePath: 'img/comprobante7.jpg'
+    }
+  ];
+
+  fetchForms(): void {
+    this.formularioService.getFormsAll().subscribe(
+      response => {
+        this.forms = response.filter(form => form.estadoValidacionFormulario === 'approved');
+      },
+      error => {
+        console.error('Error fetching forms:', error);
+      }
+    );
   }
-];
-
-
-
 
   get progressWidth(): string {
     // Aquí puedes definir la lógica para calcular el ancho de la barra de progreso
@@ -132,7 +145,7 @@ export class TablaValidacionComprobanteComponent  {
     }
   }
 
-  aceptar(id: number) {
+  aceptar(id: string) {
     Swal.fire({
       title: '¿Estás seguro de que deseas aprobar?',
       text: "No podrás revertir esto!",
@@ -154,7 +167,7 @@ export class TablaValidacionComprobanteComponent  {
     });
   }
 
-  rechazar(id: number) {
+  rechazar(id: string) {
     Swal.fire({
       title: '¿Estás seguro de que deseas rechazar?',
       text: "No podrás revertir esto!",
@@ -176,9 +189,9 @@ export class TablaValidacionComprobanteComponent  {
     });
   }
 
-
   //metodos para numerar tabla
   pageSize = 5;
+
   currentPage = 1;
 
   changePage(page: number) {
@@ -189,6 +202,7 @@ export class TablaValidacionComprobanteComponent  {
     this.pageSize = size;
     this.currentPage = 1; // Volver a la primera página
   }
+
   get currentRecords() {
     const start = (this.currentPage - 1) * this.pageSize;
     const end = start + this.pageSize;
@@ -213,20 +227,11 @@ export class TablaValidacionComprobanteComponent  {
   receiptImagePath: string = '';
   displayModal: boolean = false;
 
-
-
-
-  verComprobante(receiptPath: string) {
-    this.receiptImagePath = receiptPath;
+  verComprobante(receiptPath: string = '') {
+    this.receiptImagePath = 'http://localhost:3000/' + receiptPath;
     this.displayModal = true;
     this.cd.detectChanges();
   }
-
-
-
-
-
-
 }
 
 

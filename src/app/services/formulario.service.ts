@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {format} from "date-fns";
 
 export interface Form {
   id: string;
@@ -11,6 +12,7 @@ export interface Form {
   phoneNumber: string;
   address: string;
   estadoValidacionFormulario: string;
+  urlPayment?: string;
   // Add other form fields as needed
 }
 
@@ -20,14 +22,11 @@ export interface Form {
 export class FormularioService {
   private apiUrl = 'http://localhost:3000/api/forms';
 
-  constructor(private http: HttpClient) { }
-
-  getFormsSummary(): Observable<Form[]> {
-    return this.http.get<Form[]>(`${this.apiUrl}/summary`);
+  constructor(private http: HttpClient) {
   }
 
-  getRejectedForms(): Observable<Form[]> {
-    return this.http.get<Form[]>(`${this.apiUrl}/rejected`);
+  getFormsAll(): Observable<Form[]> {
+    return this.http.get<Form[]>(`${this.apiUrl}`);
   }
 
   approveForm(id: string): Observable<any> {
@@ -36,5 +35,9 @@ export class FormularioService {
 
   rejectForm(id: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${id}/reject`, {});
+  }
+
+  uploadPayment(id: string, payload: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${id}/upload-payment`, payload);
   }
 }
