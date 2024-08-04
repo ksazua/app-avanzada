@@ -194,7 +194,7 @@ export class PetAdoptionComponent implements OnInit {
   // Obtiene la imagen de la mascota según su tipo
   getPetImage(petType: string): string {
     if (petType.toLowerCase() === 'gato') {
-      return 'https://res.cloudinary.com/ddodvvqcq/image/upload/v1722727957/img/CatAvatar.jpg';
+      return 'https://res.cloudinary.com/ddodvvqcq/image/upload/v1722742575/img/CatAvatar.jpg';
     } else if (petType.toLowerCase() === 'perro') {
       return 'https://res.cloudinary.com/ddodvvqcq/image/upload/v1722727971/img/DogAvatar.jpg';
     } else {
