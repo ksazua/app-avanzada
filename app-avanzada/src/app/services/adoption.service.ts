@@ -24,8 +24,8 @@ export class AdoptionService {
 
   constructor(private http: HttpClient) { }
 
-  createAdoptionForm(formData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/create`, formData);
+  createForm(formData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/createForm`, formData);
   }
 
   getPetAdoptions(userId: string): Observable<PetAdoption[]> {

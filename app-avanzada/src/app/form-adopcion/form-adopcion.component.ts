@@ -261,7 +261,7 @@ export class FormAdopcionComponent {
         confirmButtonText: "Enviar"
       }).then((result) => {
         if (result.isConfirmed) {
-          this.adoptionService.createAdoptionForm(this.adoptionForm.value).subscribe(
+          this.adoptionService.createForm(this.adoptionForm.value).subscribe(
             response => {
               Swal.fire({
                 title: "Éxito!",
